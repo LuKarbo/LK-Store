@@ -5,4 +5,6 @@
     <color name="grey">#515250</color>
     <color name="light_gray">#CDCFCC</color>
     <color name="white">#FDFFFB</color>
+    <color name="white_transparent">#64FDFFFB</color>
+    <color name="inputs_borde">#A8A8A8</color>
 </resources>
