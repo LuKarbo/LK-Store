@@ -19,6 +19,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        TextView name = findViewById(R.id.inputName);
+        TextView alert = findViewById(R.id.alertMSG);
+
         // validaciones para ver si es un usuario cargado
         // etc
         // etc
@@ -28,7 +31,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // cambio a la vista del register
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                if(name.getText().toString().equals("test"))
+                {
+                    alert.setText("Credenciales invalidas");
+                }
+                else{
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
             }
         });
 
