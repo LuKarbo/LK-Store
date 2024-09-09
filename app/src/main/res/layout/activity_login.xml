@@ -31,6 +31,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.288">
 
+            <TextView
+                android:id="@+id/alertMSG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/alert"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toTopOf="@+id/loginBTN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/inputPass" />
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="73dp"
