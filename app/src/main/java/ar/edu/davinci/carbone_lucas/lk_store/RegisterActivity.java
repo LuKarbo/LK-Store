@@ -22,7 +22,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // cambio a la vista del register
-                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                Intent intentLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intentLogin);
             }
         });
     }

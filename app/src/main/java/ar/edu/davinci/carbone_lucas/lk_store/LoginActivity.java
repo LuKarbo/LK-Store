@@ -36,7 +36,8 @@ public class LoginActivity extends AppCompatActivity {
                     alert.setText("Credenciales invalidas");
                 }
                 else{
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    Intent intentHome = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intentHome);
                 }
             }
         });
@@ -47,7 +48,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // cambio a la vista del register
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                Intent intentRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intentRegister);
             }
         });
 
