@@ -10,7 +10,7 @@
         />
     <!-- Redondeo los bordes -->
     <corners
-        android:radius="10dp"
+        android:radius="40dp"
         />
     <!-- Coloco un delineado -->
     <stroke

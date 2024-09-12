@@ -19,23 +19,26 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        TextView name = findViewById(R.id.inputName);
-        TextView alert = findViewById(R.id.alertMSG);
+        TextView name = findViewById(R.id.nameInput);
+        TextView pass = findViewById(R.id.passwordInput);
+        TextView alert = findViewById(R.id.alertTextView);
 
-        // validaciones para ver si es un usuario cargado
-        // etc
-        // etc
         gotoHome = findViewById(R.id.loginBTN);
 
         gotoHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // cambio a la vista del register
-                if(name.getText().toString().equals("test"))
+                // validaciones para ver si es un usuario cargado
+                // etc
+                // etc
+
+                if(name.getText().toString().equals("test") && pass.getText().toString().equals("123"))
                 {
-                    alert.setText("Credenciales invalidas");
+                    // aviso de fallo
+                    alert.setText("Credenciales inválidas");
                 }
                 else{
+                    // cambio a la vista del register
                     Intent intentHome = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intentHome);
                 }

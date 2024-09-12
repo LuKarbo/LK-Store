@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">LK-Store</string>
     <string name="registrarme_btn">Registrarme</string>
-    <string name="nombre">Nombre</string>
-    <string name="correo">Correo</string>
-    <string name="password">Contraseña</string>
-    <string name="confirm_password">Confirmar Contraseña</string>
+    <string name="nombre">User Name</string>
+    <string name="correo">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
     <string name="register">Register</string>
-    <string name="ingresar">Ingresar</string>
+    <string name="ingresar">Login</string>
     <string name="notHaveAccount">No tienes una cuenta?</string>
     <string name="notHaveAccount_goto">Crea una aquí!</string>
     <string name="haveAccount">Ya tienes una cuenta?</string>

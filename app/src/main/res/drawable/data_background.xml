@@ -6,7 +6,7 @@
 
     <!-- Tipo y Color -->
     <solid
-        android:color="@color/white_transparent"
+        android:color="#FFFFFF"
         />
     <!-- Redondeo los bordes -->
     <corners
