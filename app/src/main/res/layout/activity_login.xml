@@ -91,6 +91,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/input_background"
                 android:drawableLeft="@drawable/login_icon"
+                android:inputType="textPersonName"
                 android:drawablePadding="10dp"
                 android:hint="@string/nombre"
                 android:padding="10dp"
