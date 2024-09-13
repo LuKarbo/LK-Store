@@ -1,15 +1,13 @@
 package ar.edu.davinci.carbone_lucas.lk_store;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.Arrays;
@@ -28,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
+        // Configura la Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
         // ESTUDIAR MEJOR SOBRE ViewPager y IMGs
@@ -49,5 +49,29 @@ public class MainActivity extends AppCompatActivity {
         };
         handler.postDelayed(runnable, 8000);
         // ------------------------------------------
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == R.id.my_account){
+            return true;
+        }
+        else if(item.getItemId() == R.id.food_menu){
+            return true;
+        }
+        else if(item.getItemId() == R.id.shop_cart){
+            return true;
+        }
+        else if(item.getItemId() == R.id.settings){
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

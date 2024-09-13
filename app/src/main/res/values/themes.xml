@@ -2,7 +2,16 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.LKStore" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/gotoRegisterLogin</item>
+        <item name="colorPrimaryVariant">#FFA047</item>
+        <item name="colorOnPrimary">@color/gotoRegisterLogin</item>
+
+        <item name="colorSecondary">#FFA047</item>
+        <item name="colorSecondaryVariant">@color/gotoRegisterLogin</item>
+        <item name="colorOnSecondary">#FFA047</item>
+
+
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="Theme.LKStore" parent="Base.Theme.LKStore" />

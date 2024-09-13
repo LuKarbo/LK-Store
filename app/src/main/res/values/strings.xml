@@ -12,4 +12,9 @@
     <string name="haveAccount">Ya tienes una cuenta?</string>
     <string name="haveAccount_goto">Ingresa ahora!</string>
     <string name="welcome">Bienvenido a</string>
+    <string name="mi_cuenta">Mi Cuenta</string>
+    <string name="menus">Menus</string>
+    <string name="carrito">Carrito</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="admin_menu">Admin Menu</string>
 </resources>
