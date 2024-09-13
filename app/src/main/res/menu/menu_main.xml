@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        app:showAsAction="always"
+        android:id="@+id/home_menu_btn"
+        android:title=" "
+        android:icon="@drawable/home_icon"/>
+    <item
         app:showAsAction="ifRoom"
         android:title=" "
         android:icon="@drawable/menu_icon">

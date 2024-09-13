@@ -17,4 +17,6 @@
     <string name="carrito">Carrito</string>
     <string name="ajustes">Ajustes</string>
     <string name="admin_menu">Admin Menu</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
