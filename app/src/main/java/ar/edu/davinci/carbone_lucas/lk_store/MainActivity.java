@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Configura ViewPager2
-
 
         // Cargar el Fragmento Home por defecto
         if (savedInstanceState == null) {
