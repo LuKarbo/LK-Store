@@ -64,6 +64,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
+            android:id="@+id/dataContainer_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -74,15 +75,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/alertTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/alert"
-                android:textSize="12sp"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                />
 
             <EditText
                 android:id="@+id/nameInput"
