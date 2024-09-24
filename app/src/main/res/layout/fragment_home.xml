@@ -56,7 +56,9 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/btn_hambur"
+                    android:scaleType="fitCenter"
+                    android:background="?attr/selectableItemBackground" />
 
                 <!-- Boton de papas_list -->
                 <ImageButton
@@ -65,7 +67,9 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/btn_papas"
+                    android:scaleType="fitCenter"
+                    android:background="?attr/selectableItemBackground" />
 
                 <!-- Boton de drink_list -->
                 <ImageButton
@@ -74,16 +78,20 @@
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/btn_bebidas"
+                    android:scaleType="fitCenter"
+                    android:background="?attr/selectableItemBackground" />
 
                 <!-- Boton de combos_list -->
                 <ImageButton
-                    android:id="@+id/combos_list"
+                    android:id="@+id/soporte"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/btn_soporte"
+                    android:scaleType="fitCenter"
+                    android:background="?attr/selectableItemBackground" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -141,7 +149,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/recomendados"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="650dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/alert"
                 app:layout_constraintBottom_toBottomOf="parent"
