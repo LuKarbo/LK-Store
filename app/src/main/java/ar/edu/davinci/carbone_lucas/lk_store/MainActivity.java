@@ -17,9 +17,15 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.Arrays;
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MenuFoodFragment;
+import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MyAccountFragment;
+import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.ShopCartFragment;
+import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.SettingsFragment;
+
 public class MainActivity extends AppCompatActivity {
 
-
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         // Cargar el Fragmento Home por defecto
         if (savedInstanceState == null) {
             Fragment homeFragment = new HomeFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_data, homeFragment);
             fragmentTransaction.commit();
         }
@@ -50,19 +56,39 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.home_menu_btn) {
-            Toast.makeText(this,"Go Home",Toast.LENGTH_SHORT).show();
+            Fragment homeFragment = new HomeFragment();
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_data, homeFragment);
+            fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.my_account) {
-            Toast.makeText(this,"Go Mi Cuenta",Toast.LENGTH_SHORT).show();
+            Fragment myAccountFragment = new MyAccountFragment();
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_data, myAccountFragment);
+            fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.food_menu) {
-            Toast.makeText(this,"Go Menu Food",Toast.LENGTH_SHORT).show();
+            Fragment menuFoodFragment = new MenuFoodFragment();
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_data, menuFoodFragment);
+            fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.shop_cart) {
-            Toast.makeText(this,"Go Carrito",Toast.LENGTH_SHORT).show();
+            Fragment shopCartFragment = new ShopCartFragment();
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_data, shopCartFragment);
+            fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.settings) {
-            Toast.makeText(this,"Go Ajustes",Toast.LENGTH_SHORT).show();
+            Fragment settingsFragment = new SettingsFragment();
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_data, settingsFragment);
+            fragmentTransaction.commit();
             return true;
         }
         return super.onOptionsItemSelected(item);

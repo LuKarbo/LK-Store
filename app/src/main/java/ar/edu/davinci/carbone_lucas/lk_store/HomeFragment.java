@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
                 handler.postDelayed(this, 3000); // Cambia cada 3 segundos
             }
         };
-        handler.postDelayed(runnable, 8000); // Empieza después de 8 segundos
+        handler.postDelayed(runnable, 4000); // Empieza después de 4 segundos
 
         // CARGO LISTA DE BOTONES
         descuentos = view.findViewById(R.id.title_descuentos);
@@ -61,14 +61,10 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
         List<CardItem> items = new ArrayList<>();
-        items.add(new CardItem("Title 1", "$10.00", R.drawable.hambur_1));
-        items.add(new CardItem("Title 2", "$12.00", R.drawable.hambur_2));
-        items.add(new CardItem("Title 3", "$30.00", R.drawable.hambur_1));
-        items.add(new CardItem("Title 2", "$122.00", R.drawable.hambur_1));
-        items.add(new CardItem("Title 1", "$10.00", R.drawable.hambur_1));
-        items.add(new CardItem("Title 2", "$12.00", R.drawable.hambur_2));
-        items.add(new CardItem("Title 3", "$30.00", R.drawable.hambur_1));
-        items.add(new CardItem("Title 2", "$122.00", R.drawable.hambur_1));
+        items.add(new CardItem("Doble Queso XL", "$350.00", R.drawable.hambur_1));
+        items.add(new CardItem("Master PS", "$180.00", R.drawable.hambur_2));
+        items.add(new CardItem("Simple X", "$300.00", R.drawable.hambur_3));
+        items.add(new CardItem("Papas Fresh", "$122.00", R.drawable.hambur_1));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(new CardAdapter(items));
