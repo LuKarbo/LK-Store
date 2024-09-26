@@ -70,10 +70,12 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.089">
 
 
             <EditText
@@ -83,9 +85,9 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/input_background"
                 android:drawableLeft="@drawable/login_icon"
-                android:inputType="textPersonName"
                 android:drawablePadding="10dp"
                 android:hint="@string/nombre"
+                android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_gray" />
@@ -104,47 +106,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_gray" />
 
-            <Button
-                android:id="@+id/loginBTN"
-                android:layout_width="320dp"
-                android:layout_height="60dp"
-                android:text="@string/ingresar"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                app:cornerRadius="30dp"
-                android:layout_marginTop="16dp"/>
 
-            <LinearLayout
-                android:id="@+id/container_msg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="@+id/loginBTN"
-                app:layout_constraintStart_toStartOf="@+id/loginBTN"
-                app:layout_constraintTop_toBottomOf="@+id/loginBTN">
-
-                <TextView
-                    android:id="@+id/haveAccountMSG"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/notHaveAccount"
-                    android:textColor="@color/white"
-                    />
-
-                <TextView
-                    android:id="@+id/register_goto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/notHaveAccount_goto"
-                    android:textColor="#FF7B00"
-                    />
-
-            </LinearLayout>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
