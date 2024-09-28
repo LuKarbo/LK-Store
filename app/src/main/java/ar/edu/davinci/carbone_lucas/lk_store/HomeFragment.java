@@ -6,7 +6,10 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +31,12 @@ public class HomeFragment extends Fragment {
     private Runnable runnable;
     private List<Integer> bannerImages;
     private TextView descuentos;
+
+    // botones de categoria
+    private ImageButton hambur_btn;
+    private ImageButton papas_btn;
+    private ImageButton bebidas_btn;
+    private ImageButton soporte_btn;
 
     @Nullable
     @Override
@@ -61,12 +70,61 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
         List<CardItem> items = new ArrayList<>();
-        items.add(new CardItem("Doble Queso XL", "$350.00", R.drawable.hambur_1));
-        items.add(new CardItem("Master PS", "$180.00", R.drawable.hambur_2));
-        items.add(new CardItem("Simple X", "$300.00", R.drawable.hambur_3));
-        items.add(new CardItem("Papas Fresh", "$122.00", R.drawable.hambur_1));
+        items.add(new CardItem(1,"Doble Queso XL", "$350.00", R.drawable.hambur_1));
+        items.add(new CardItem(2,"Master PS", "$180.00", R.drawable.hambur_2));
+        items.add(new CardItem(3,"Simple X", "$300.00", R.drawable.hambur_3));
+        items.add(new CardItem(4,"Papas Fresh", "$122.00", R.drawable.hambur_1));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setAdapter(new CardAdapter(items));
+        CardAdapter cardAdapter = new CardAdapter(items);
+        recyclerView.setAdapter(cardAdapter);
+
+        // Agrego funcionalidad al boton de las categorías
+        cardAdapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                CardItem clickedItem = items.get(position);
+                Toast.makeText(getContext(), "Descuento: " + clickedItem.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Cargo funcionalidad de Botones de Categorías:
+        crearFuncionalidadBTNS(view);
+    }
+
+    private void crearFuncionalidadBTNS(View view) {
+        hambur_btn = view.findViewById(R.id.burger_list);
+        hambur_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Listado de Hamburguesas!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        papas_btn = view.findViewById(R.id.papas_list);
+        papas_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Listado de Papas Fritas!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bebidas_btn = view.findViewById(R.id.drink_list);
+        bebidas_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Listado de Bebidas!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        soporte_btn = view.findViewById(R.id.soporte);
+        soporte_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Soporte/Ayuda!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }
