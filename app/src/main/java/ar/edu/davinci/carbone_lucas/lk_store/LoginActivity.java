@@ -13,6 +13,9 @@ import androidx.core.content.ContextCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
@@ -20,10 +23,13 @@ public class LoginActivity extends AppCompatActivity {
     private EditText nameInput;
     private EditText passwordInput;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         nameInput = findViewById(R.id.nameInput);
         passwordInput = findViewById(R.id.passwordInput);
@@ -37,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = nameInput.getText().toString();
                 String password = passwordInput.getText().toString();
+
+                // Agrego el uso del Auth para el login
+
 
                 if (name.equals("test") && password.equals("123")) {
                     alert.setText("Credenciales inválidas");

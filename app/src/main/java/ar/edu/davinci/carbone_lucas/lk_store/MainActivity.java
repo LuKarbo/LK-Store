@@ -1,5 +1,6 @@
 package ar.edu.davinci.carbone_lucas.lk_store;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,23 +31,36 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
+    // Pase 1 agregar la creación del auth
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Configura la Toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // Pase 2 Inizalizo mi Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
+        // Paso 3 Verifico si esta logeado, sino lo mando para el login
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            // Configura la Toolbar
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-        // Cargar el Fragmento Home por defecto
-        if (savedInstanceState == null) {
-            Fragment homeFragment = new HomeFragment();
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_data, homeFragment);
-            fragmentTransaction.commit();
+            // Cargar el Fragmento Home por defecto
+            if (savedInstanceState == null) {
+                Fragment homeFragment = new HomeFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container_data, homeFragment);
+                fragmentTransaction.commit();
+            }
+        }
+        else{
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
     }
 
