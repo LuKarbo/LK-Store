@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "327130441553",
+    "project_id": "lk-database",
+    "storage_bucket": "lk-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327130441553:android:b5e7a4c5343196ff7a1570",
+        "android_client_info": {
+          "package_name": "ar.edu.davinci.carbone_lucas.lk_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpH382cFaUxB7fABuFG53gWBI1j924mTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
