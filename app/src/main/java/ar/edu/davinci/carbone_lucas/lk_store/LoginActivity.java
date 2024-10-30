@@ -3,16 +3,23 @@ package ar.edu.davinci.carbone_lucas.lk_store;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -23,13 +30,16 @@ public class LoginActivity extends AppCompatActivity {
     private EditText nameInput;
     private EditText passwordInput;
 
-
+    // creo el firebase obj
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // inicializo el firebase obj
+        mAuth = FirebaseAuth.getInstance();
 
         nameInput = findViewById(R.id.nameInput);
         passwordInput = findViewById(R.id.passwordInput);
@@ -43,17 +53,26 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = nameInput.getText().toString();
                 String password = passwordInput.getText().toString();
+                // Log.i("firebase-testing", name);
+                // Log.i("firebase-testing", password);
 
                 // Agrego el uso del Auth para el login
+                mAuth.signInWithEmailAndPassword(name,password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    Log.i("firebase-login", mAuth.getCurrentUser().getEmail());
 
-
-                if (name.equals("test") && password.equals("123")) {
-                    alert.setText("Credenciales inválidas");
-                    alert.setVisibility(View.VISIBLE);
-                } else {
-                    Intent intentHome = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intentHome);
-                }
+                                    Intent intentHome = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intentHome);
+                                }
+                                else{
+                                    alert.setText("Credenciales inválidas");
+                                    alert.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        });
             }
         });
     }

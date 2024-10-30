@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else{
+            // paso 4 lo mando para el login
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
