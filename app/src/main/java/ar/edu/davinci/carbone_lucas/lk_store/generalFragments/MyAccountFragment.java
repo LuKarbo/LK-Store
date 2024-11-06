@@ -17,10 +17,13 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 
 import ar.edu.davinci.carbone_lucas.lk_store.R;
+import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class MyAccountFragment extends Fragment {
 
-    private TextView fragmentTitle;
+    private TextView userNameText;
+    private TextView userEmailText;
+    private TextView userPhoneText;
     private Button viewHistoryButton;
     private Button changePasswordButton;
     private LinearLayout linearButtons;
@@ -34,10 +37,19 @@ public class MyAccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Inicializar vistas
         linearButtons = view.findViewById(R.id.linearButtons);
+        userNameText = view.findViewById(R.id.userName);
+        userEmailText = view.findViewById(R.id.userEmail);
+        userPhoneText = view.findViewById(R.id.userPhone);
+
+        // Obtener y mostrar la información del usuario
+        loadUserInfo();
+
         crearBTNs();
         crearFuncionalidadBTNS();
 
+        // Cargar imagen de perfil
         ImageView profileImage = view.findViewById(R.id.profileImage);
         Glide.with(this)
                 .load(R.drawable.user_profile)
@@ -45,8 +57,17 @@ public class MyAccountFragment extends Fragment {
                 .into(profileImage);
     }
 
+    private void loadUserInfo() {
+        User currentUser = User.getInstance();
+        if (currentUser != null) {
+            userNameText.setText(currentUser.getName());
+            userEmailText.setText(currentUser.getEmail());
+            userPhoneText.setText(currentUser.getPhoneNumber());
+        }
+    }
+
     private void crearBTNs() {
-        // Boton para ver el Historial
+        // Botón para ver el Historial
         viewHistoryButton = createButton(getString(R.string.ver_historial));
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                 0, LinearLayout.LayoutParams.WRAP_CONTENT, 1
@@ -54,7 +75,7 @@ public class MyAccountFragment extends Fragment {
         buttonParams.setMarginEnd(dpToPx(8));
         viewHistoryButton.setLayoutParams(buttonParams);
 
-        // Boton para cambiar la contraseña
+        // Botón para cambiar la contraseña
         changePasswordButton = createButton(getString(R.string.change_password));
         LinearLayout.LayoutParams button2Params = new LinearLayout.LayoutParams(
                 0, LinearLayout.LayoutParams.WRAP_CONTENT, 1
@@ -80,7 +101,6 @@ public class MyAccountFragment extends Fragment {
         viewHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement view history functionality
                 Toast.makeText(getContext(), "Ver historial", Toast.LENGTH_SHORT).show();
             }
         });
@@ -88,7 +108,8 @@ public class MyAccountFragment extends Fragment {
         changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Implement change password functionality
+                // Aquí podrías implementar la funcionalidad de cambio de contraseña
+                // usando el password actual guardado en User.getInstance().getPassword()
                 Toast.makeText(getContext(), "Cambiar contraseña", Toast.LENGTH_SHORT).show();
             }
         });

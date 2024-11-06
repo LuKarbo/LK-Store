@@ -25,6 +25,7 @@ import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MenuFoodFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MyAccountFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.ShopCartFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.SettingsFragment;
+import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,6 +69,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // Obtener el ítem del menú admin
+        MenuItem adminMenuItem = menu.findItem(R.id.adminmenu);
+
+        // Verificar si existe el ítem y controlar su visibilidad según isAdmin
+        if (adminMenuItem != null) {
+            User currentUser = User.getInstance();
+            adminMenuItem.setVisible(currentUser.isAdmin());
+        }
+
         return true;
     }
 
@@ -107,6 +118,14 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_data, settingsFragment);
             fragmentTransaction.commit();
+            return true;
+        } else if (item.getItemId() == R.id.adminmenu && User.getInstance().isAdmin()) {
+            // Hacer el AdminFragment
+//            Fragment adminFragment = new SettingsFragment();
+//            fragmentManager = getSupportFragmentManager();
+//            fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.container_data, adminFragment);
+//            fragmentTransaction.commit();
             return true;
         }
         return super.onOptionsItemSelected(item);

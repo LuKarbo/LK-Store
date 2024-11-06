@@ -23,6 +23,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.UserController;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button loginButton;
@@ -63,6 +65,9 @@ public class LoginActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()){
                                     Log.i("firebase-login", mAuth.getCurrentUser().getEmail());
+
+                                    UserController userController = new UserController();
+                                    userController.login(mAuth.getCurrentUser().getUid());
 
                                     Intent intentHome = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intentHome);
