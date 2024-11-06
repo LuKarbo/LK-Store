@@ -6,7 +6,6 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +21,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.MenuController;
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
 import ar.edu.davinci.carbone_lucas.lk_store.models.CardItem;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Drink;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Fries;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Hamburger;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
+import ar.edu.davinci.carbone_lucas.lk_store.models.interfaces.Product;
 
 public class HomeFragment extends Fragment {
 
@@ -37,6 +43,7 @@ public class HomeFragment extends Fragment {
     private ImageButton papas_btn;
     private ImageButton bebidas_btn;
     private ImageButton soporte_btn;
+    private RecyclerView recyclerViewRecommendedMenus;
 
     @Nullable
     @Override
@@ -69,15 +76,45 @@ public class HomeFragment extends Fragment {
         descuentos.setText("Descuentos Destacados!");
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
-        List<CardItem> items = new ArrayList<>();
-        items.add(new CardItem(1,"Doble Queso XL", "$350.00", R.drawable.hambur_1));
-        items.add(new CardItem(2,"Master PS", "$180.00", R.drawable.hambur_2));
-        items.add(new CardItem(3,"Simple X", "$300.00", R.drawable.hambur_3));
-        items.add(new CardItem(4,"Papas Fresh", "$122.00", R.drawable.hambur_1));
+        // Obtener los productos de la API
+        ProductController productService = new ProductController();
+        MenuController menuController = new MenuController();
+        List<Hamburger> hamburguesas = productService.getHamburgers();
+        List<Fries> papasFritas = productService.getFries();
+        List<Drink> bebidas = productService.getDrinks();
 
+        // Seleccionar los productos con descuento
+        List<CardItem> items = new ArrayList<>();
+        items.addAll(getDiscountedProducts(hamburguesas, 3));
+        items.addAll(getDiscountedProducts(papasFritas, 3));
+
+        // Configurar el RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         CardAdapter cardAdapter = new CardAdapter(items);
         recyclerView.setAdapter(cardAdapter);
+
+        // Recupero los Menus en Descuento
+        List<MenuData> menus_list = menuController.getDiscountedMenus();
+
+        // Configuro el RecyclerView para los menús recomendados
+        recyclerViewRecommendedMenus = view.findViewById(R.id.recyclerView_recommended_menus);
+        recyclerViewRecommendedMenus.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        RecommendedMenuAdapter adapterMenu = new RecommendedMenuAdapter(menus_list);
+        adapterMenu.setOnItemClickListener(new RecommendedMenuAdapter.OnItemClickListener() {
+            @Override
+            public void onViewMenuClick(MenuData menuData) {
+                // Lógica para ver el menú
+                Toast.makeText(getContext(), "Ver menú: " + menuData.getHamburger().getName(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAddToCartClick(MenuData menuData) {
+                // Lógica para agregar al carrito
+                Toast.makeText(getContext(), "Agregar al carrito: " + menuData.getHamburger().getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        recyclerViewRecommendedMenus.setAdapter(adapterMenu);
+
 
         // Agrego funcionalidad al boton de las categorías
         cardAdapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
@@ -126,5 +163,23 @@ public class HomeFragment extends Fragment {
         });
 
 
+    }
+
+    private <T extends Product> List<CardItem> getDiscountedProducts(List<T> products, int maxItems) {
+        List<CardItem> discountedProducts = new ArrayList<>();
+        int count = 0;
+        for (T product : products) {
+            if (product.isDiscounted() && count < maxItems) {
+                discountedProducts.add(new CardItem(
+                        product.getDiscountId(),
+                        product.getName(),
+                        String.format("$%.2f", product.getPrice()),
+                        // cambiar por el proceso de imagen api: product.getImg_url()
+                        R.drawable.hambur_1
+                ));
+                count++;
+            }
+        }
+        return discountedProducts;
     }
 }
