@@ -45,8 +45,8 @@ public class ProductController {
 
         // TEST
         bebidas.add(new Drink("1","Cola", 2.29, 150, "https://example.com/cola.jpg"));
-        bebidas.add(new Drink( "21","Sprite", 2.29, 130, "https://example.com/sprite.jpg"));
-        bebidas.add(new Drink("31","Jugo de Naranja", 2.79, 100, "https://example.com/jugo-naranja.jpg"));
+        bebidas.add(new Drink( "2","Sprite", 2.29, 130, "https://example.com/sprite.jpg"));
+        bebidas.add(new Drink("3","Jugo de Naranja", 2.79, 100, "https://example.com/jugo-naranja.jpg"));
         bebidas.add(new Drink("4","Té Helado", 2.49, 90, "https://example.com/te-helado.jpg"));
 
         return bebidas;

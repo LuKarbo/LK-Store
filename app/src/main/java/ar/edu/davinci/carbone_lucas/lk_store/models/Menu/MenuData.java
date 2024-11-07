@@ -48,6 +48,8 @@ public class MenuData {
         return isDiscounted;
     }
 
+    public String getType(){ return "Menu"; }
+
     public double getPrice() {
         return price;
     }

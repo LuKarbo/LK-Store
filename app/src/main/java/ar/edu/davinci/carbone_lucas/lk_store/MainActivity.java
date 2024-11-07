@@ -130,4 +130,12 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void replaceFragment(Fragment newFragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container_data, newFragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }

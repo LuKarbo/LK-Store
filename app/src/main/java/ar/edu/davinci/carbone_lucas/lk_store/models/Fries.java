@@ -25,6 +25,12 @@ public class Fries implements Product {
     public String getId() {
         return this.Id;
     }
+
+    @Override
+    public String getType() {
+        return "Papas Fritas";
+    }
+
     @Override
     public String getImg_url() {
         return img_url;

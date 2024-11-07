@@ -7,4 +7,5 @@ public interface Product {
     double getPrice();
     String getImg_url();
     String getId();
+    String getType();
 }

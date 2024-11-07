@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -85,8 +87,8 @@ public class HomeFragment extends Fragment {
 
         // Seleccionar los productos con descuento
         List<CardItem> items = new ArrayList<>();
-        items.addAll(getDiscountedProducts(hamburguesas, 3));
-        items.addAll(getDiscountedProducts(papasFritas, 3));
+        items.addAll(getDiscountedProducts(hamburguesas, 3, "Hamburguesa"));
+        items.addAll(getDiscountedProducts(papasFritas, 3, "Papas Fritas"));
 
         // Configurar el RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -104,13 +106,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onViewMenuClick(MenuData menuData) {
                 // Lógica para ver el menú
-                Toast.makeText(getContext(), "Ver menú: " + menuData.getHamburger().getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Ver menú: " + menuData.getId() + " | " + menuData.getType(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAddToCartClick(MenuData menuData) {
                 // Lógica para agregar al carrito
-                Toast.makeText(getContext(), "Agregar al carrito: " + menuData.getHamburger().getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Agregar al carrito: " + menuData.getId() + " | " + menuData.getType(), Toast.LENGTH_SHORT).show();
             }
         });
         recyclerViewRecommendedMenus.setAdapter(adapterMenu);
@@ -121,7 +123,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 CardItem clickedItem = items.get(position);
-                Toast.makeText(getContext(), "Descuento: " + clickedItem.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Descuento: " + clickedItem.getId() + " | " + clickedItem.getType(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -134,7 +136,8 @@ public class HomeFragment extends Fragment {
         hambur_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Listado de Hamburguesas!", Toast.LENGTH_SHORT).show();
+                ProductListFragment productListFragment = ProductListFragment.newInstance("Hamburguesas");
+                ((MainActivity) requireActivity()).replaceFragment(productListFragment);
             }
         });
 
@@ -142,7 +145,8 @@ public class HomeFragment extends Fragment {
         papas_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Listado de Papas Fritas!", Toast.LENGTH_SHORT).show();
+                ProductListFragment productListFragment = ProductListFragment.newInstance("Papas Fritas");
+                ((MainActivity) requireActivity()).replaceFragment(productListFragment);
             }
         });
 
@@ -150,7 +154,8 @@ public class HomeFragment extends Fragment {
         bebidas_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Listado de Bebidas!", Toast.LENGTH_SHORT).show();
+                ProductListFragment productListFragment = ProductListFragment.newInstance("Bebidas");
+                ((MainActivity) requireActivity()).replaceFragment(productListFragment);
             }
         });
 
@@ -162,20 +167,20 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
     }
 
-    private <T extends Product> List<CardItem> getDiscountedProducts(List<T> products, int maxItems) {
+    private <T extends Product> List<CardItem> getDiscountedProducts(List<T> products, int maxItems, String type) {
         List<CardItem> discountedProducts = new ArrayList<>();
         int count = 0;
         for (T product : products) {
             if (product.isDiscounted() && count < maxItems) {
                 discountedProducts.add(new CardItem(
-                        product.getDiscountId(),
+                        product.getId(),
                         product.getName(),
                         String.format("$%.2f", product.getPrice()),
                         // cambiar por el proceso de imagen api: product.getImg_url()
-                        R.drawable.hambur_1
+                        R.drawable.hambur_1,
+                        type
                 ));
                 count++;
             }

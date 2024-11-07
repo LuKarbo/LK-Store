@@ -42,10 +42,10 @@ public class MenuController {
         // Recibo de la api
         discountedMenus.add(new Menu("1","1","2","3","",false,60));
         discountedMenus.add(new Menu("2","3","2","3","1",true,20));
-        discountedMenus.add(new Menu("4","1","2","3","",false,120));
-        discountedMenus.add(new Menu("3","2","3","3","1",true,50));
-        discountedMenus.add(new Menu("3","1","1","2","1",true,50));
-        discountedMenus.add(new Menu("3","3","2","1","1",true,50));
+        discountedMenus.add(new Menu("3","1","2","3","",false,120));
+        discountedMenus.add(new Menu("4","2","3","3","1",true,50));
+        discountedMenus.add(new Menu("5","1","1","2","1",true,50));
+        discountedMenus.add(new Menu("6","3","2","1","1",true,50));
 
         // Genero el MenuData para tener toda la info del menu
         List<MenuData> menuList = new ArrayList<>();

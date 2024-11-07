@@ -29,8 +29,14 @@ public class Drink implements Product {
 
     @Override
     public String getId() {
-        return "";
+        return Id;
     }
+
+    @Override
+    public String getType() {
+        return "Bebida";
+    }
+
     public String getName() {
         return name;
     }

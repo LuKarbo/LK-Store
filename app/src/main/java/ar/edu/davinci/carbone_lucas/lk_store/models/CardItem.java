@@ -5,12 +5,14 @@ public class CardItem {
     private String title;
     private String price;
     private int imageResId;
+    private String type;
 
-    public CardItem(String id, String title, String price, int imageResId) {
+    public CardItem(String id, String title, String price, int imageResId, String type) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.imageResId = imageResId;
+        this.type = type;
     }
 
     public String getId(){return id;}
@@ -25,5 +27,9 @@ public class CardItem {
 
     public int getImageResId() {
         return imageResId;
+    }
+
+    public String getType() {
+        return type;
     }
 }

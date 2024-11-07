@@ -32,6 +32,11 @@ public class Hamburger implements Product {
         return this.Id;
     }
 
+    @Override
+    public String getType() {
+        return "Hamburguesa";
+    }
+
     public void setImg_url(String img_url) {
         this.img_url = img_url;
     }
