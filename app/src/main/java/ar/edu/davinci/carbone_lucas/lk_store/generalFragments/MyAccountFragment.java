@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +17,9 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
+import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
+import ar.edu.davinci.carbone_lucas.lk_store.ViewProductFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class MyAccountFragment extends Fragment {
@@ -24,9 +27,17 @@ public class MyAccountFragment extends Fragment {
     private TextView userNameText;
     private TextView userEmailText;
     private TextView userPhoneText;
+    private TextView userAddressText;
     private Button viewHistoryButton;
-    private Button changePasswordButton;
+    private Button editProfileButton;
     private LinearLayout linearButtons;
+    private ImageButton backButton;
+
+    public MyAccountFragment() {}
+
+    public static MyAccountFragment newInstance() {
+        return new MyAccountFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,24 +48,28 @@ public class MyAccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Inicializar vistas
         linearButtons = view.findViewById(R.id.linearButtons);
         userNameText = view.findViewById(R.id.userName);
         userEmailText = view.findViewById(R.id.userEmail);
         userPhoneText = view.findViewById(R.id.userPhone);
+        userAddressText = view.findViewById(R.id.userAddress);
 
-        // Obtener y mostrar la información del usuario
         loadUserInfo();
 
-        crearBTNs();
-        crearFuncionalidadBTNS();
+        createButtons();
+        createButtonFunctionality();
 
-        // Cargar imagen de perfil
         ImageView profileImage = view.findViewById(R.id.profileImage);
         Glide.with(this)
                 .load(R.drawable.user_profile)
                 .circleCrop()
                 .into(profileImage);
+
+
+        backButton = view.findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> {
+            getParentFragmentManager().popBackStack();
+        });
     }
 
     private void loadUserInfo() {
@@ -63,11 +78,12 @@ public class MyAccountFragment extends Fragment {
             userNameText.setText(currentUser.getName());
             userEmailText.setText(currentUser.getEmail());
             userPhoneText.setText(currentUser.getPhoneNumber());
+            userAddressText.setText(currentUser.getAddress());
         }
     }
 
-    private void crearBTNs() {
-        // Botón para ver el Historial
+    private void createButtons() {
+
         viewHistoryButton = createButton(getString(R.string.ver_historial));
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                 0, LinearLayout.LayoutParams.WRAP_CONTENT, 1
@@ -75,17 +91,16 @@ public class MyAccountFragment extends Fragment {
         buttonParams.setMarginEnd(dpToPx(8));
         viewHistoryButton.setLayoutParams(buttonParams);
 
-        // Botón para cambiar la contraseña
-        changePasswordButton = createButton(getString(R.string.change_password));
+
+        editProfileButton = createButton(getString(R.string.edit_profile));
         LinearLayout.LayoutParams button2Params = new LinearLayout.LayoutParams(
                 0, LinearLayout.LayoutParams.WRAP_CONTENT, 1
         );
         button2Params.setMarginStart(dpToPx(8));
-        changePasswordButton.setLayoutParams(button2Params);
+        editProfileButton.setLayoutParams(button2Params);
 
-        // Los agrego al linear
         linearButtons.addView(viewHistoryButton);
-        linearButtons.addView(changePasswordButton);
+        linearButtons.addView(editProfileButton);
     }
 
     private Button createButton(String text) {
@@ -97,7 +112,7 @@ public class MyAccountFragment extends Fragment {
         return button;
     }
 
-    private void crearFuncionalidadBTNS() {
+    private void createButtonFunctionality() {
         viewHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,12 +120,11 @@ public class MyAccountFragment extends Fragment {
             }
         });
 
-        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Aquí podrías implementar la funcionalidad de cambio de contraseña
-                // usando el password actual guardado en User.getInstance().getPassword()
-                Toast.makeText(getContext(), "Cambiar contraseña", Toast.LENGTH_SHORT).show();
+                UserEditFragment userEditFragment = UserEditFragment.newInstance();
+                ((MainActivity) requireActivity()).replaceFragment(userEditFragment);
             }
         });
     }

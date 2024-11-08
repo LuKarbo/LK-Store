@@ -3,8 +3,8 @@ package ar.edu.davinci.carbone_lucas.lk_store.Controllers;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class UserController {
-    public void login(String userId) {
 
+    public void login(String userId) {
         // consulta a la api con el userId
         // recupero la info del usuario
         // guardo los datos en la instancia
@@ -16,5 +16,13 @@ public class UserController {
         user.setPassword("123");
         user.setAddress("Av. Corrientes 2037, C1001 Cdad. Autónoma de Buenos Aires");
         user.setAdmin(true);
+    }
+
+    public void editUser(String name, String email, String phoneNumber, String address) {
+        User user = User.getInstance();
+        user.setName(name);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setAddress(address);
     }
 }
