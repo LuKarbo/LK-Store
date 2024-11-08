@@ -13,8 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -106,7 +104,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onViewMenuClick(MenuData menuData) {
                 // Lógica para ver el menú
-                Toast.makeText(getContext(), "Ver menú: " + menuData.getId() + " | " + menuData.getType(), Toast.LENGTH_SHORT).show();
+                ViewProductFragment viewProductFragment = ViewProductFragment.newInstance(menuData.getId(), menuData.getType());
+                ((MainActivity) requireActivity()).replaceFragment(viewProductFragment);
             }
 
             @Override
@@ -123,7 +122,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 CardItem clickedItem = items.get(position);
-                Toast.makeText(getContext(), "Descuento: " + clickedItem.getId() + " | " + clickedItem.getType(), Toast.LENGTH_SHORT).show();
+                ViewProductFragment viewProductFragment = ViewProductFragment.newInstance(clickedItem.getId(), clickedItem.getType());
+                ((MainActivity) requireActivity()).replaceFragment(viewProductFragment);
             }
         });
 
