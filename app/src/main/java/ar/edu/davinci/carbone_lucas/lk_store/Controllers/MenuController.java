@@ -62,15 +62,33 @@ public class MenuController {
         return Arrays.asList("kr506q1A3QK01dtAgM1x", "b1DSsgpmUrjkJ0g7pN6y", "9NnA4iYLEf0QIGndrwMQ");
     }
 
-    public MenuData getMenu(String id){
+    public MenuData getMenu(String id) {
         ProductController pc = new ProductController();
         DiscountController dc = new DiscountController();
 
-        // busco en la api
-        Menu menu = new Menu("1","1","2","3","1",true,60);
+        List<MenuData> allMenus = getAllMenus();
 
-        // Genero el MenuData para tener toda la info del menu
-        MenuData menuData = new MenuData(menu.getId(),pc.getHamburger(menu.getHamburgerId()),pc.getFries(menu.getFriesId()),pc.getDrink(menu.getDrinkId()),dc.getDiscount(menu.getDiscountId()),menu.isDiscounted(),menu.getPrice());
+        MenuData returnMenu = null;
+        for (MenuData m : allMenus) {
+            if (m.getId().equals(id)) {
+                returnMenu = m;
+                break;
+            }
+        }
+
+        if (returnMenu == null) {
+            return null;
+        }
+
+        MenuData menuData = new MenuData(
+                returnMenu.getId(),
+                returnMenu.getHamburger(),
+                returnMenu.getFries(),
+                returnMenu.getDrink(),
+                returnMenu.getDiscount(),
+                returnMenu.isDiscounted(),
+                returnMenu.getPrice()
+        );
 
         return menuData;
     }

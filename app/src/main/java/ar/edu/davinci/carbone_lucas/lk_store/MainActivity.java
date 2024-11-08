@@ -2,26 +2,18 @@ package ar.edu.davinci.carbone_lucas.lk_store;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Arrays;
-import java.util.List;
-
-import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MenuFoodFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MyAccountFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.ShopCartFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.SettingsFragment;
@@ -99,10 +91,11 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.food_menu) {
-            Fragment menuFoodFragment = new MenuFoodFragment();
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_data, menuFoodFragment);
+            MenuListFragment menuListFragment = new MenuListFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_data, menuListFragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.shop_cart) {
