@@ -67,7 +67,8 @@ public class ProductListFragment extends Fragment {
         // Recuperar la lista de productos según el tipo de producto
         productList = getProductList(productType);
         adapter = new ProductListAdapter(productList, (product) -> {
-            Toast.makeText(getContext(), "Ver producto: " + product.getId() + " | " + product.getType(), Toast.LENGTH_SHORT).show();
+            ViewProductFragment viewProductFragment = ViewProductFragment.newInstance(product.getId(), product.getType());
+            ((MainActivity) requireActivity()).replaceFragment(viewProductFragment);
         }, (product) -> {
             Toast.makeText(getContext(), "Agregar al carrito: " + product.getId() + " | " + product.getType(), Toast.LENGTH_SHORT).show();
         });

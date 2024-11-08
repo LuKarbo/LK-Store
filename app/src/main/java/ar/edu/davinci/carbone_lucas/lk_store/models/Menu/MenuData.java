@@ -1,5 +1,6 @@
 package ar.edu.davinci.carbone_lucas.lk_store.models.Menu;
 
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.DiscountController;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Discount.Discount;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Drink;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Fries;
@@ -51,6 +52,13 @@ public class MenuData {
     public String getType(){ return "Menu"; }
 
     public double getPrice() {
-        return price;
+        if (isDiscounted) {
+            Discount discount = this.discount;
+            if (discount != null) {
+                double discountAmount = this.price * (discount.getPercent() / 100.0);
+                return this.price - discountAmount;
+            }
+        }
+        return this.price;
     }
 }

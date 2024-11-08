@@ -16,10 +16,10 @@ public class ProductController {
         // Agrego las hamburguesas a la lista
 
         // TEST
-        hamburger_list.add(new Hamburger("1","/discount/abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg"));
-        hamburger_list.add(new Hamburger("2","/discount/def456", true, "Big Mac", 7.99, 30, "https://example.com/bigmac.jpg"));
+        hamburger_list.add(new Hamburger("1","abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg"));
+        hamburger_list.add(new Hamburger("2","def456", true, "Big Mac", 7.99, 30, "https://example.com/bigmac.jpg"));
         hamburger_list.add(new Hamburger("3",null, false, "Hamburguesa Sencilla", 4.99, 80, "https://example.com/hamburguesa-sencilla.jpg"));
-        hamburger_list.add(new Hamburger("4","/discount/ghi789", true, "Doble Queso", 6.49, 25, "https://example.com/doble-queso.jpg"));
+        hamburger_list.add(new Hamburger("4","ghi789", true, "Doble Queso", 6.49, 25, "https://example.com/doble-queso.jpg"));
 
         return hamburger_list;
     }
@@ -30,10 +30,10 @@ public class ProductController {
         // Agrego las papas fritas a la lista
 
         // TEST
-        fries_list.add(new Fries("1","/discount/mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg"));
-        fries_list.add(new Fries("2","/discount/pqr678", true, "Medium Fries", 3.29, 80, "https://example.com/medium-fries.jpg"));
+        fries_list.add(new Fries("1","mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg"));
+        fries_list.add(new Fries("2","pqr678", true, "Medium Fries", 3.29, 80, "https://example.com/medium-fries.jpg"));
         fries_list.add(new Fries("3",null, false, "Papas Fritas", 2.99, 120, "https://example.com/papas-fritas.jpg"));
-        fries_list.add(new Fries("4","/discount/stu901", true, "Papas Deluxe", 3.99, 60, "https://example.com/papas-deluxe.jpg"));
+        fries_list.add(new Fries("4","stu901", true, "Papas Deluxe", 3.99, 60, "https://example.com/papas-deluxe.jpg"));
 
         return fries_list;
     }
@@ -54,7 +54,7 @@ public class ProductController {
 
     public Hamburger getHamburger(String id) {
         // consultar la API Hamburger
-        Hamburger hamburger = new Hamburger("1","/discount/abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg");
+        Hamburger hamburger = new Hamburger("1","abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg");
         // guardar la respuesta
 
         return hamburger;
@@ -62,7 +62,7 @@ public class ProductController {
 
     public Fries getFries(String id) {
         // consultar la API Fries
-        Fries fries = new Fries("1","/discount/mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg");
+        Fries fries = new Fries("1","mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg");
         // guardar la respuesta
 
         return fries;
@@ -81,10 +81,10 @@ public class ProductController {
         // Agrego las hamburguesas a la lista
 
         // TEST
-        hamburgerIDs_list.add(new Hamburger("1","/discount/abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg").getId());
-        hamburgerIDs_list.add(new Hamburger("2","/discount/def456", true, "Big Mac", 7.99, 30, "https://example.com/bigmac.jpg").getId());
+        hamburgerIDs_list.add(new Hamburger("1","abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg").getId());
+        hamburgerIDs_list.add(new Hamburger("2","def456", true, "Big Mac", 7.99, 30, "https://example.com/bigmac.jpg").getId());
         hamburgerIDs_list.add(new Hamburger("3",null, false, "Hamburguesa Sencilla", 4.99, 80, "https://example.com/hamburguesa-sencilla.jpg").getId());
-        hamburgerIDs_list.add(new Hamburger("4","/discount/ghi789", true, "Doble Queso", 6.49, 25, "https://example.com/doble-queso.jpg").getId());
+        hamburgerIDs_list.add(new Hamburger("4","ghi789", true, "Doble Queso", 6.49, 25, "https://example.com/doble-queso.jpg").getId());
 
         return hamburgerIDs_list;
     }
@@ -94,10 +94,10 @@ public class ProductController {
         // Agrego las hamburguesas a la lista
 
         // TEST
-        friesIDs_list.add(new Fries("1","/discount/mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg").getId());
-        friesIDs_list.add(new Fries("2","/discount/pqr678", true, "Medium Fries", 3.29, 80, "https://example.com/medium-fries.jpg").getId());
+        friesIDs_list.add(new Fries("1","mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg").getId());
+        friesIDs_list.add(new Fries("2","pqr678", true, "Medium Fries", 3.29, 80, "https://example.com/medium-fries.jpg").getId());
         friesIDs_list.add(new Fries("3",null, false, "Papas Fritas", 2.99, 120, "https://example.com/papas-fritas.jpg").getId());
-        friesIDs_list.add(new Fries("4","/discount/stu901", true, "Papas Deluxe", 3.99, 60, "https://example.com/papas-deluxe.jpg").getId());
+        friesIDs_list.add(new Fries("4","stu901", true, "Papas Deluxe", 3.99, 60, "https://example.com/papas-deluxe.jpg").getId());
 
         return friesIDs_list;
     }

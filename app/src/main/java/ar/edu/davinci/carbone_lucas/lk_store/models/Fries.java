@@ -1,5 +1,7 @@
 package ar.edu.davinci.carbone_lucas.lk_store.models;
 
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.DiscountController;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Discount.Discount;
 import ar.edu.davinci.carbone_lucas.lk_store.models.interfaces.Product;
 
 public class Fries implements Product {
@@ -65,7 +67,14 @@ public class Fries implements Product {
     }
 
     public double getPrice() {
-        return price;
+        if (isDiscounted) {
+            Discount discount = new DiscountController().getDiscount(this.discountId);
+            if (discount != null) {
+                double discountAmount = this.price * (discount.getPercent() / 100.0);
+                return this.price - discountAmount;
+            }
+        }
+        return this.price;
     }
 
     public void setPrice(double price) {

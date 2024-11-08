@@ -67,7 +67,7 @@ public class MenuController {
         DiscountController dc = new DiscountController();
 
         // busco en la api
-        Menu menu = new Menu("1","1","2","3","",false,60);
+        Menu menu = new Menu("1","1","2","3","1",true,60);
 
         // Genero el MenuData para tener toda la info del menu
         MenuData menuData = new MenuData(menu.getId(),pc.getHamburger(menu.getHamburgerId()),pc.getFries(menu.getFriesId()),pc.getDrink(menu.getDrinkId()),dc.getDiscount(menu.getDiscountId()),menu.isDiscounted(),menu.getPrice());
