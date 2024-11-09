@@ -1,4 +1,4 @@
-package ar.edu.davinci.carbone_lucas.lk_store.models;
+package ar.edu.davinci.carbone_lucas.lk_store.models.Food;
 
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.DiscountController;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Discount.Discount;

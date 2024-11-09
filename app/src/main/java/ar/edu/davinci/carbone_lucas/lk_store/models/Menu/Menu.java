@@ -1,9 +1,5 @@
 package ar.edu.davinci.carbone_lucas.lk_store.models.Menu;
 
-import ar.edu.davinci.carbone_lucas.lk_store.models.Drink;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Fries;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Hamburger;
-
 public class Menu {
     private String id;
     private String hamburgerId;

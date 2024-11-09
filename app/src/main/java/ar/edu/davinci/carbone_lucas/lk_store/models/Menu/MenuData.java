@@ -1,10 +1,9 @@
 package ar.edu.davinci.carbone_lucas.lk_store.models.Menu;
 
-import ar.edu.davinci.carbone_lucas.lk_store.Controllers.DiscountController;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Discount.Discount;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Drink;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Fries;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Hamburger;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Drink;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Fries;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Hamburger;
 
 public class MenuData {
     private String id;

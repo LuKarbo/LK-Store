@@ -21,9 +21,9 @@ import ar.edu.davinci.carbone_lucas.lk_store.Controllers.MenuController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Discount.Discount;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Drink;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Fries;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Hamburger;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Drink;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Fries;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Hamburger;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
 
 public class ViewProductFragment extends Fragment {

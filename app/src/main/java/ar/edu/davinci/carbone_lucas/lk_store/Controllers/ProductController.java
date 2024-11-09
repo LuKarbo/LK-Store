@@ -2,9 +2,9 @@ package ar.edu.davinci.carbone_lucas.lk_store.Controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.davinci.carbone_lucas.lk_store.models.Hamburger;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Fries;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Drink;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Hamburger;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Fries;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Drink;
 
 public class ProductController {
     private static final String API_URL = "https://tu-api.com/";
