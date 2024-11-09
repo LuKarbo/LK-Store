@@ -1,4 +1,4 @@
-package ar.edu.davinci.carbone_lucas.lk_store;
+package ar.edu.davinci.carbone_lucas.lk_store.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.CardItem;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {

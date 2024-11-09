@@ -1,4 +1,4 @@
-package ar.edu.davinci.carbone_lucas.lk_store;
+package ar.edu.davinci.carbone_lucas.lk_store.generalFragments;
 
 import android.os.Bundle;
 
@@ -23,7 +23,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import ar.edu.davinci.carbone_lucas.lk_store.Adapters.ProductListAdapter;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
+import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
+import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.interfaces.Product;
 
 public class ProductListFragment extends Fragment {

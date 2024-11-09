@@ -1,21 +1,18 @@
-package ar.edu.davinci.carbone_lucas.lk_store;
+package ar.edu.davinci.carbone_lucas.lk_store.Adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
 
 public class RecommendedMenuAdapter extends RecyclerView.Adapter<RecommendedMenuAdapter.ViewHolder> {

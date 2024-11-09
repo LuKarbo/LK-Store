@@ -1,4 +1,4 @@
-package ar.edu.davinci.carbone_lucas.lk_store;
+package ar.edu.davinci.carbone_lucas.lk_store.generalFragments;
 
 import android.os.Bundle;
 
@@ -16,11 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.DiscountController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.MenuController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
+import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Discount.Discount;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Drink;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Fries;

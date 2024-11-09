@@ -14,6 +14,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.HomeFragment;
+import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MenuListFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MyAccountFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.ShopCartFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.SettingsFragment;
@@ -78,16 +80,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.home_menu_btn) {
             Fragment homeFragment = new HomeFragment();
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_data, homeFragment);
             fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.my_account) {
             Fragment myAccountFragment = new MyAccountFragment();
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_data, myAccountFragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.food_menu) {
@@ -100,16 +103,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         } else if (item.getItemId() == R.id.shop_cart) {
             Fragment shopCartFragment = new ShopCartFragment();
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_data, shopCartFragment);
-            fragmentTransaction.commit();
-            return true;
-        } else if (item.getItemId() == R.id.settings) {
-            Fragment settingsFragment = new SettingsFragment();
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_data, settingsFragment);
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.adminmenu && User.getInstance().isAdmin()) {
@@ -118,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
 //            fragmentManager = getSupportFragmentManager();
 //            fragmentTransaction = fragmentManager.beginTransaction();
 //            fragmentTransaction.replace(R.id.container_data, adminFragment);
+//            fragmentTransaction.addToBackStack(null);
 //            fragmentTransaction.commit();
             return true;
         }

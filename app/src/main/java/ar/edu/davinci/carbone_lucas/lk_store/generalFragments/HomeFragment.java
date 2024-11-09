@@ -1,8 +1,9 @@
-package ar.edu.davinci.carbone_lucas.lk_store;
+package ar.edu.davinci.carbone_lucas.lk_store.generalFragments;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +22,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.Adapters.BannerAdapter;
+import ar.edu.davinci.carbone_lucas.lk_store.Adapters.CardAdapter;
+import ar.edu.davinci.carbone_lucas.lk_store.Adapters.RecommendedMenuAdapter;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.MenuController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
+import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
+import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.CardItem;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Drink;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Fries;
@@ -104,6 +110,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onViewMenuClick(MenuData menuData) {
                 // Lógica para ver el menú
+                //Log.i("Ver Menu: ", menuData.getId());
                 ViewProductFragment viewProductFragment = ViewProductFragment.newInstance(menuData.getId(), menuData.getType());
                 ((MainActivity) requireActivity()).replaceFragment(viewProductFragment);
             }
@@ -111,6 +118,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onAddToCartClick(MenuData menuData) {
                 // Lógica para agregar al carrito
+                //Log.i("Comprar Menu: ", menuData.getId());
                 Toast.makeText(getContext(), "Agregar al carrito: " + menuData.getId() + " | " + menuData.getType(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -1,4 +1,4 @@
-package ar.edu.davinci.carbone_lucas.lk_store;
+package ar.edu.davinci.carbone_lucas.lk_store.Adapters;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -14,16 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ar.edu.davinci.carbone_lucas.lk_store.models.interfaces.Product;
+import ar.edu.davinci.carbone_lucas.lk_store.R;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
 
-public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
-
-    private List<? extends Product> productList;
+public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHolder> {
+    private List<MenuData> menuDataList;
     private OnViewProductClickListener viewProductClickListener;
     private OnAddToCartClickListener addToCartClickListener;
 
-    public ProductListAdapter(List<?> productList, OnViewProductClickListener viewProductClickListener, OnAddToCartClickListener addToCartClickListener) {
-        this.productList = (List<? extends Product>) productList;
+    public MenuListAdapter(List<MenuData> menuDataList, OnViewProductClickListener viewProductClickListener, OnAddToCartClickListener addToCartClickListener) {
+        this.menuDataList = menuDataList;
         this.viewProductClickListener = viewProductClickListener;
         this.addToCartClickListener = addToCartClickListener;
     }
@@ -37,23 +37,23 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Product product = productList.get(position);
-        holder.nameTextView.setText(product.getName());
-        holder.priceTextView.setText(String.format("$%.2f", product.getPrice()));
-        holder.isDiscountedTextView.setText(product.isDiscounted() ? "En Descuento!" : "");
-        holder.isDiscountedTextView.setTextColor(product.isDiscounted() ? ContextCompat.getColor(holder.itemView.getContext(), R.color.alert) : ContextCompat.getColor(holder.itemView.getContext(), R.color.gotoRegisterLogin));
-        holder.imageView.setImageURI(Uri.parse(product.getImg_url()));
-        holder.viewProductButton.setOnClickListener(v -> viewProductClickListener.onViewProductClick(product));
-        holder.addToCartButton.setOnClickListener(v -> addToCartClickListener.onAddToCartClick(product));
+        MenuData menuData = menuDataList.get(position);
+        holder.nameTextView.setText("Menu: " + menuData.getId());
+        holder.priceTextView.setText(String.format("$%.2f", menuData.getPrice()));
+        holder.isDiscountedTextView.setText(menuData.isDiscounted() ? "En Descuento!" : "");
+        holder.isDiscountedTextView.setTextColor(menuData.isDiscounted() ? ContextCompat.getColor(holder.itemView.getContext(), R.color.alert) : ContextCompat.getColor(holder.itemView.getContext(), R.color.gotoRegisterLogin));
+        holder.imageView.setImageURI(Uri.parse(menuData.getHamburger().getImg_url()));
+        holder.viewProductButton.setOnClickListener(v -> viewProductClickListener.onViewProductClick(menuData));
+        holder.addToCartButton.setOnClickListener(v -> addToCartClickListener.onAddToCartClick(menuData));
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return menuDataList.size();
     }
 
-    public void updateProductList(List<? extends Product> newProductList) {
-        this.productList = newProductList;
+    public void updateMenuDataList(List<MenuData> newMenuDataList) {
+        this.menuDataList = newMenuDataList;
         notifyDataSetChanged();
     }
 
@@ -77,10 +77,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public interface OnViewProductClickListener {
-        void onViewProductClick(Product product);
+        void onViewProductClick(MenuData menuData);
     }
 
     public interface OnAddToCartClickListener {
-        void onAddToCartClick(Product product);
+        void onAddToCartClick(MenuData menuData);
     }
 }

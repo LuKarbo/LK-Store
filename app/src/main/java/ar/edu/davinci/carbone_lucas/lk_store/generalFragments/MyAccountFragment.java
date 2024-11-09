@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 
 import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
-import ar.edu.davinci.carbone_lucas.lk_store.ViewProductFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class MyAccountFragment extends Fragment {

@@ -23,6 +23,12 @@ public class MenuController {
         allMenus.add(new Menu("2","3","2","3","1",true,20));
         allMenus.add(new Menu("3","2","2","3","1",true,50));
         allMenus.add(new Menu("4","1","2","3","",false,120));
+        allMenus.add(new Menu("5","1","2","3","",false,60));
+        allMenus.add(new Menu("6","3","2","3","1",true,20));
+        allMenus.add(new Menu("7","1","2","3","",false,120));
+        allMenus.add(new Menu("8","2","3","3","1",true,50));
+        allMenus.add(new Menu("9","1","1","2","1",true,50));
+        allMenus.add(new Menu("10","3","2","1","1",true,50));
 
         // Genero el MenuData para tener toda la info del menu
         List<MenuData> menuList = new ArrayList<>();

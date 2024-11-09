@@ -1,4 +1,4 @@
-package ar.edu.davinci.carbone_lucas.lk_store;
+package ar.edu.davinci.carbone_lucas.lk_store.generalFragments;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -18,10 +18,11 @@ import android.widget.Toast;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
+
+import ar.edu.davinci.carbone_lucas.lk_store.Adapters.MenuListAdapter;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.MenuController;
 import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
-import ar.edu.davinci.carbone_lucas.lk_store.ViewProductFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
 
 public class MenuListFragment extends Fragment {

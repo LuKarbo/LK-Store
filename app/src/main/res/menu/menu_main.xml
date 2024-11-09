@@ -32,12 +32,6 @@
                 android:icon="@drawable/shop_icon"/>
 
             <item
-                android:id="@+id/settings"
-                android:title="@string/ajustes"
-                app:showAsAction="never"
-                android:icon="@drawable/settings_icon"/>
-
-            <item
                 android:id="@+id/adminmenu"
                 android:title="@string/admin_menu"
                 app:showAsAction="never"
