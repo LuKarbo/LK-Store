@@ -171,7 +171,8 @@ public class HomeFragment extends Fragment {
         soporte_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Soporte/Ayuda!", Toast.LENGTH_SHORT).show();
+                SupportFragment supportFragment = SupportFragment.newInstance();
+                ((MainActivity) requireActivity()).replaceFragment(supportFragment);
             }
         });
 
