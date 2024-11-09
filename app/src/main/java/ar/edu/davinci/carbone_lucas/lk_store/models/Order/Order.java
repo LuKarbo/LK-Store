@@ -71,17 +71,31 @@ public class Order {
         }
     }
 
-    public void agregarItem(OrderData item) {
-        this.orderData.add(item);
-        double itemPrice = getPriceByType(item.getFoodType(), item.getFoodId());
-        this.price += itemPrice * item.getFoodAmount();
+    public boolean agregarItem(OrderData item) {
+        boolean itemExists = false;
+
+        for (OrderData existingItem : orderData) {
+            if (existingItem.getFoodId().equalsIgnoreCase(item.getFoodId()) && existingItem.getFoodType().equalsIgnoreCase(item.getFoodType())) {
+
+                return false;
+            }
+        }
+
+        if (!itemExists) {
+            this.orderData.add(item);
+            double itemPrice = getPriceByType(item.getFoodType(), item.getFoodId());
+            this.price += itemPrice * item.getFoodAmount();
+            return true;
+        }
+
+        return false;
     }
 
-    public void removerItemPorId(String id) {
+    public void removerItemPorId(String id, String type) {
         Iterator<OrderData> iterator = this.orderData.iterator();
         while (iterator.hasNext()) {
             OrderData item = iterator.next();
-            if (item.getFoodId().equals(id)) {
+            if (item.getFoodId().equals(id) && item.getFoodType().equalsIgnoreCase(type)) {
                 double itemPrice = getPriceByType(item.getFoodType(), item.getFoodId());
                 this.price -= itemPrice * item.getFoodAmount();
                 iterator.remove();

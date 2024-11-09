@@ -26,6 +26,10 @@ public class OrderData {
         this.foodAmount = foodAmount;
     }
 
+    public void aumentarCantidadPorCopia(){
+        this.foodAmount += 1;
+    }
+
     public String getFoodId() {
         return foodId;
     }

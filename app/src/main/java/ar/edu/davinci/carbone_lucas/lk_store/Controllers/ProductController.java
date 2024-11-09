@@ -54,26 +54,37 @@ public class ProductController {
 
     public Hamburger getHamburger(String id) {
         // consultar la API Hamburger
-        Hamburger hamburger = new Hamburger("1","abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg");
-        // guardar la respuesta
-
-        return hamburger;
+        List<Hamburger> lista_h = getHamburgers();
+        for(Hamburger item : lista_h){
+            if(item.getId().equalsIgnoreCase(id)){
+                return item;
+            }
+        }
+        return new Hamburger("100000","", false, "TEST", 5.99, 50, "https://example.com/cheeseburger.jpg");
     }
 
     public Fries getFries(String id) {
         // consultar la API Fries
-        Fries fries = new Fries("1","mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg");
-        // guardar la respuesta
-
-        return fries;
+        List<Fries> lista_f = getFries();
+        for(Fries item : lista_f){
+            if(item.getId().equalsIgnoreCase(id)){
+                return item;
+            }
+        }
+        return new Fries("100000","", false, "TEST", 2.49, 100, "https://example.com/small-fries.jpg");
     }
 
     public Drink getDrink(String id) {
         // consultar la API Drink
-        Drink drink = new Drink("1","Cola", 2.29, 150, "https://example.com/cola.jpg");
-        // guardar la respuesta
 
-        return drink;
+        List<Drink> lista_d = getDrinks();
+        for(Drink item : lista_d){
+            if(item.getId().equalsIgnoreCase(id)){
+                return item;
+            }
+        }
+
+        return new Drink("10000","TESt", 2.29, 150, "https://example.com/cola.jpg");
     }
 
     public List<String> getHamburgersIds(){

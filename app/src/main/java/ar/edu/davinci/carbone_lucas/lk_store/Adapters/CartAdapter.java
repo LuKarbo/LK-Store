@@ -78,7 +78,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             increaseButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    orderController.updateItemAmount(item.getFoodId(), item.getFoodAmount() + 1);
+                    orderController.updateItemAmount(item.getFoodId(), item.getFoodType(), item.getFoodAmount() + 1);
                     notifyItemChanged(getAdapterPosition());
                     if (listener != null) {
                         listener.onItemChanged();
@@ -95,10 +95,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 @Override
                 public void onClick(View view) {
                     if (item.getFoodAmount() > 1) {
-                        orderController.updateItemAmount(item.getFoodId(), item.getFoodAmount() - 1);
+                        orderController.updateItemAmount(item.getFoodId(), item.getFoodType(),item.getFoodAmount() - 1);
                         notifyItemChanged(getAdapterPosition());
                     } else {
-                        orderController.removeItem(item.getFoodId());
+                        orderController.removeItem(item.getFoodId(),item.getFoodType());
                     }
                     if (listener != null) {
                         listener.onItemChanged();

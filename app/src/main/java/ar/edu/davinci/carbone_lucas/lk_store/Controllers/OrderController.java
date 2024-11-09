@@ -37,27 +37,42 @@ public class OrderController {
     public boolean addItem(String foodType, String foodId, int amount) {
         initializeOrderIfNeeded();
         OrderData newItem = new OrderData(amount, foodId, foodType);
-        currentOrder.agregarItem(newItem);
+        boolean result = currentOrder.agregarItem(newItem);
+        if(!result) {
+            aumentarItemAmount(foodId,foodType);
+        }
         return true;
     }
 
-    public boolean removeItem(String foodId) {
+    public boolean removeItem(String foodId, String type) {
         initializeOrderIfNeeded();
-        currentOrder.removerItemPorId(foodId);
+        currentOrder.removerItemPorId(foodId,type);
         return true;
     }
 
-    public boolean updateItemAmount(String foodId, int newAmount) {
+    public boolean updateItemAmount(String foodId, String type, int newAmount) {
         initializeOrderIfNeeded();
         List<OrderData> items = currentOrder.getOrderData();
         for (OrderData item : items) {
-            if (item.getFoodId().equals(foodId)) {
+            if (item.getFoodId().equals(foodId) && item.getFoodType().equalsIgnoreCase(type)) {
                 item.cambiarCantidad(newAmount);
                 currentOrder.setPrice();
                 return true;
             }
         }
         return false;
+    }
+
+    public void aumentarItemAmount(String foodId, String type){
+        initializeOrderIfNeeded();
+        List<OrderData> items = currentOrder.getOrderData();
+        for (OrderData item : items) {
+            if (item.getFoodId().equals(foodId) && item.getFoodType().equalsIgnoreCase(type)) {
+                item.aumentarCantidadPorCopia();
+                currentOrder.setPrice();
+                break;
+            }
+        }
     }
 
     public List<OrderData> getOrderItems() {
