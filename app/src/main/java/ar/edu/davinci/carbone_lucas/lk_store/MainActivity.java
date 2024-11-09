@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.AdminFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.HomeFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MenuListFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MyAccountFragment;
@@ -110,13 +111,12 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
             return true;
         } else if (item.getItemId() == R.id.adminmenu && User.getInstance().isAdmin()) {
-            // Hacer el AdminFragment
-//            Fragment adminFragment = new SettingsFragment();
-//            fragmentManager = getSupportFragmentManager();
-//            fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(R.id.container_data, adminFragment);
-//            fragmentTransaction.addToBackStack(null);
-//            fragmentTransaction.commit();
+            Fragment adminFragment = new AdminFragment();
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_data, adminFragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
             return true;
         }
         return super.onOptionsItemSelected(item);

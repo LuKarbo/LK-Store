@@ -52,9 +52,14 @@ public class ShopCartFragment extends Fragment implements CartAdapter.CartAdapte
             @Override
             public void onClick(View view) {
                 if (orderController != null && !orderController.isOrderEmpty()) {
-                    Toast.makeText(getContext(), "Orden confirmada", Toast.LENGTH_SHORT).show();
-                    orderController.clearOrder();
-                    updateUI();
+                    if(User.getInstance().getAddress() != null && !User.getInstance().getAddress().isEmpty()){
+                        Toast.makeText(getContext(), "Orden confirmada", Toast.LENGTH_SHORT).show();
+                        orderController.clearOrder();
+                        updateUI();
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Vaya a su cuenta y Agregue su dirección", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(getContext(), "El carrito está vacío", Toast.LENGTH_SHORT).show();
                 }

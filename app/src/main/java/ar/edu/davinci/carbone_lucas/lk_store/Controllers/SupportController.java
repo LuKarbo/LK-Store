@@ -23,9 +23,9 @@ public class SupportController {
 
         // TEST
         support_list.add(new Support("1", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("2", "2","test2@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("3", "12314","test2@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("4", "4r653456","test2@gmail.com", "Mi consuultaaaaaa"));
+        support_list.add(new Support("2", "2","test3@gmail.com", "Mi consuultaaaaaa"));
+        support_list.add(new Support("3", "12314","test3@gmail.com", "Mi consuultaaaaaa"));
+        support_list.add(new Support("4", "4r653456","test3@gmail.com", "Mi consuultaaaaaa"));
         support_list.add(new Support("5", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
         support_list.add(new Support("6", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
         support_list.add(new Support("7", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
@@ -65,7 +65,7 @@ public class SupportController {
 
     public void responderConsulta(String id, String respuesta){
         Support sup = getConsulta(id);
-        sup.setRespuesta("Respuestaaaaaa");
+        sup.setRespuesta(respuesta);
     }
 
 }
