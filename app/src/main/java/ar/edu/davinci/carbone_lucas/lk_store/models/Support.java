@@ -18,8 +18,8 @@ public class Support {
     }
 
     public Support(String id, String userId, String email, String consulta) {
-        //this.id = UUID.randomUUID().toString();
-        this.userId = id;
+        this.id = id;
+        this.userId = userId;
         this.email = email;
         this.consulta = consulta;
         this.fecha = new Date();
@@ -46,5 +46,4 @@ public class Support {
     }
 
     public Date getFechaRespuesta() { return fechaRespuesta; }
-    public void setFechaRespuesta(Date fecha){ this.fechaRespuesta = fecha;}
 }

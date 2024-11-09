@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.util.UUID;
 
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.SupportController;
+import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Support;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
@@ -89,7 +90,8 @@ public class SupportFragment extends Fragment {
         verConsultasButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                MySupportFragment mySupportFragment = MySupportFragment.newInstance();
+                ((MainActivity) requireActivity()).replaceFragment(mySupportFragment);
             }
         });
 
