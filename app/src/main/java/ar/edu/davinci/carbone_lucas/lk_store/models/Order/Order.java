@@ -48,11 +48,11 @@ public class Order {
 
     private double getPriceByType(String productType, String id) {
         switch (productType.toLowerCase()) {
-            case "hamburguer":
+            case "hamburguesa":
                 return productService.getHamburger(id).getPrice();
-            case "fries":
+            case "papas fritas":
                 return productService.getFries(id).getPrice();
-            case "drink":
+            case "bebida":
                 return productService.getDrink(id).getPrice();
             case "menu":
                 return menuController.getMenu(id).getPrice();

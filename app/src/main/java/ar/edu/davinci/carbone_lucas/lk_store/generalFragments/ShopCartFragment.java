@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.OrderController;
+import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class ShopCartFragment extends Fragment implements CartAdapter.CartAdapterListener {
     private OrderController orderController;
@@ -36,7 +37,7 @@ public class ShopCartFragment extends Fragment implements CartAdapter.CartAdapte
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shop_cart, container, false);
-
+        orderController = OrderController.getInstance(User.getInstance().getUserId());
         recyclerView = view.findViewById(R.id.cart_recycler_view);
         totalPriceText = view.findViewById(R.id.total_price_text);
         confirmButton = view.findViewById(R.id.confirm_button);

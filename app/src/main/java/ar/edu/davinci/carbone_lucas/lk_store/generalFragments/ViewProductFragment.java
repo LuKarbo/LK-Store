@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.DiscountController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.MenuController;
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.OrderController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Discount.Discount;
@@ -25,6 +26,7 @@ import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Drink;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Fries;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Hamburger;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
+import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class ViewProductFragment extends Fragment {
     private static final String ARG_ID = "id";
@@ -81,7 +83,9 @@ public class ViewProductFragment extends Fragment {
 
         Button addToCartButton = view.findViewById(R.id.button_add_to_cart);
         addToCartButton.setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "Product ID: " + id + ", Type: " + type, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show();
+            OrderController oc = OrderController.getInstance(User.getInstance().getUserId());
+            oc.addItem(type,id,1);
         });
 
         switch (type) {

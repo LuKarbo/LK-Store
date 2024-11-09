@@ -25,6 +25,7 @@ import ar.edu.davinci.carbone_lucas.lk_store.Adapters.BannerAdapter;
 import ar.edu.davinci.carbone_lucas.lk_store.Adapters.CardAdapter;
 import ar.edu.davinci.carbone_lucas.lk_store.Adapters.RecommendedMenuAdapter;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.MenuController;
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.OrderController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
 import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
@@ -33,6 +34,7 @@ import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Drink;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Fries;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Hamburger;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
+import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 import ar.edu.davinci.carbone_lucas.lk_store.models.interfaces.Product;
 
 public class HomeFragment extends Fragment {
@@ -116,9 +118,9 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onAddToCartClick(MenuData menuData) {
-                // Lógica para agregar al carrito
-                //Log.i("Comprar Menu: ", menuData.getId());
-                Toast.makeText(getContext(), "Agregar al carrito: " + menuData.getId() + " | " + menuData.getType(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show();
+                OrderController oc = OrderController.getInstance(User.getInstance().getUserId());
+                oc.addItem(menuData.getType(),menuData.getId(),1);
             }
         });
         recyclerViewRecommendedMenus.setAdapter(adapterMenu);

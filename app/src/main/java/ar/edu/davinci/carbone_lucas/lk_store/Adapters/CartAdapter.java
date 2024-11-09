@@ -70,7 +70,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         public void bind(OrderData item) {
 
-            itemName.setText(String.format("%s #%s", item.getFoodType(), item.getFoodId()));
+
+
+            itemName.setText(String.format("%s", item.getName()));
             itemQuantity.setText(String.valueOf(item.getFoodAmount()));
 
             increaseButton.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +83,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     if (listener != null) {
                         listener.onItemChanged();
                     }
+                    decreaseButton.setText("-");
                 }
             });
+
+            if(item.getFoodAmount() == 1){
+                decreaseButton.setText("Eliminar");
+            }
 
             decreaseButton.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -24,9 +24,11 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import ar.edu.davinci.carbone_lucas.lk_store.Adapters.ProductListAdapter;
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.OrderController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
 import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
+import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 import ar.edu.davinci.carbone_lucas.lk_store.models.interfaces.Product;
 
 public class ProductListFragment extends Fragment {
@@ -73,7 +75,9 @@ public class ProductListFragment extends Fragment {
             ViewProductFragment viewProductFragment = ViewProductFragment.newInstance(product.getId(), product.getType());
             ((MainActivity) requireActivity()).replaceFragment(viewProductFragment);
         }, (product) -> {
-            Toast.makeText(getContext(), "Agregar al carrito: " + product.getId() + " | " + product.getType(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show();
+            OrderController oc = OrderController.getInstance(User.getInstance().getUserId());
+            oc.addItem(product.getType(),product.getId(),1);
         });
         recyclerView.setAdapter(adapter);
 
