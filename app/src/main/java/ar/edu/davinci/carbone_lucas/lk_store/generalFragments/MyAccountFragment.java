@@ -115,7 +115,8 @@ public class MyAccountFragment extends Fragment {
         viewHistoryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Ver historial", Toast.LENGTH_SHORT).show();
+                MyOrdersFragment myOrdersFragment = MyOrdersFragment.newInstance();
+                ((MainActivity) requireActivity()).replaceFragment(myOrdersFragment);
             }
         });
 
