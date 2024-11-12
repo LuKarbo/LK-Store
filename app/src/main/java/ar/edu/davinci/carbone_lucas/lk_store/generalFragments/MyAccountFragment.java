@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.ImageDownloader;
 import ar.edu.davinci.carbone_lucas.lk_store.MainActivity;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
@@ -31,6 +32,8 @@ public class MyAccountFragment extends Fragment {
     private Button editProfileButton;
     private LinearLayout linearButtons;
     private ImageButton backButton;
+    private Button downloadImageButton;
+    private ImageView profileImage;
 
     public MyAccountFragment() {}
 
@@ -52,18 +55,17 @@ public class MyAccountFragment extends Fragment {
         userEmailText = view.findViewById(R.id.userEmail);
         userPhoneText = view.findViewById(R.id.userPhone);
         userAddressText = view.findViewById(R.id.userAddress);
+        downloadImageButton = view.findViewById(R.id.downloadImageButton);
+        profileImage = view.findViewById(R.id.profileImage);
 
         loadUserInfo();
-
         createButtons();
         createButtonFunctionality();
 
-        ImageView profileImage = view.findViewById(R.id.profileImage);
         Glide.with(this)
                 .load(R.drawable.user_profile)
                 .circleCrop()
                 .into(profileImage);
-
 
         backButton = view.findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> {
@@ -125,6 +127,15 @@ public class MyAccountFragment extends Fragment {
             public void onClick(View v) {
                 UserEditFragment userEditFragment = UserEditFragment.newInstance();
                 ((MainActivity) requireActivity()).replaceFragment(userEditFragment);
+            }
+        });
+
+        downloadImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String imageUrl = getString(R.string.second_user_icon_profile);
+                ImageDownloader downloader = new ImageDownloader(profileImage);
+                downloader.execute(imageUrl);
             }
         });
     }

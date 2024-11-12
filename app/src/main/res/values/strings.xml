@@ -33,4 +33,5 @@
     <string name="edit_profile">Editar Perfil</string>
     <string name="agregar_al_carrito">Agregar al carrito</string>
     <string name="ver_producto">Ver Producto</string>
+    <string name="second_user_icon_profile">https://cdn-icons-png.flaticon.com/512/8847/8847419.png</string>
 </resources>
