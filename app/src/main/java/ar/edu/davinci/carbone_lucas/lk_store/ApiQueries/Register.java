@@ -16,14 +16,21 @@ import okhttp3.Response;
 
 public class Register extends AsyncTask<String, Integer, Boolean> {
 
-    private static final String API_URL = "http://localhost:8787/api/user/register";
+    private static final String API_URL = "https://lk-store-api.onrender.com/api/user/register";
 
     @Override
     protected Boolean doInBackground(String... params) {
-        String name = params[0];
-        String email = params[1];
-        String password = params[2];
-        return registerUser(name, email, password);
+        String id = params[0];
+        String name = params[1];
+        String email = params[2];
+        String password = params[3];
+
+        Log.d("User_data", "Intentando registrar usuario:");
+        Log.d("User_data", "Nombre: " + name);
+        Log.d("User_data", "Email: " + email);
+        Log.d("User_data", "Password: " + password);
+
+        return registerUser(id, name, email, password);
     }
 
     @Override
@@ -35,15 +42,19 @@ public class Register extends AsyncTask<String, Integer, Boolean> {
         }
     }
 
-    private boolean registerUser(String name, String email, String password) {
+    private boolean registerUser(String id, String name, String email, String password) {
         OkHttpClient client = new OkHttpClient();
 
         JSONObject requestBody = new JSONObject();
         try {
+            requestBody.put("id", id);
             requestBody.put("name", name);
             requestBody.put("email", email);
             requestBody.put("password", password);
+
+            Log.d("User_data", "Request Body: " + requestBody.toString());
         } catch (JSONException e) {
+            Log.e("User_data", "Error creando JSON: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
@@ -52,34 +63,38 @@ public class Register extends AsyncTask<String, Integer, Boolean> {
         Request request = new Request.Builder()
                 .url(API_URL)
                 .post(body)
+                .addHeader("Content-Type", "application/json") // Agregar header explícito
                 .build();
 
         try {
+            Log.d("User_data", "Enviando request a: " + API_URL);
             Response response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
-                String responseBody = response.body().string();
-                Log.i("User_data", responseBody);
+            String responseBody = response.body().string();
+            Log.d("User_data", "Respuesta del servidor: " + responseBody);
+            Log.d("User_data", "Código de respuesta: " + response.code());
 
+            if (response.isSuccessful()) {
                 JSONObject jsonObject = new JSONObject(responseBody);
-                boolean success = jsonObject.getJSONObject("result").getBoolean("success");
+                boolean success = jsonObject.getBoolean("success");  // El success está en el objeto raíz
+
                 if (success) {
-                    JSONObject userObject = jsonObject.getJSONObject("result");
-                    String userId = userObject.getString("id");
-                    String userEmail = userObject.getString("email");
-                    String userName = userObject.getString("name");
-                    Log.i("User_data", "User ID: " + userId);
-                    Log.i("User_data", "User Email: " + userEmail);
-                    Log.i("User_data", "User Name: " + userName);
+                    JSONObject result = jsonObject.getJSONObject("result");
+                    String userId = result.getString("id");
+                    String userEmail = result.getString("email");
+                    String userName = result.getString("name");
+                    Log.i("User_data", "Registro exitoso - ID: " + userId);
                     return true;
                 } else {
-                    Log.i("User_data", "Error registering user");
+                    Log.e("User_data", "Error en el registro - Respuesta: " + responseBody);
                     return false;
                 }
             } else {
-                Log.i("User_data", "Error connecting to API: " + response.code() + " - " + response.message());
+                Log.e("User_data", "Error en la API: " + response.code() + " - " + response.message());
+                Log.e("User_data", "Respuesta de error: " + responseBody);
                 return false;
             }
         } catch (IOException | JSONException e) {
+            Log.e("User_data", "Error en la comunicación: " + e.getMessage());
             e.printStackTrace();
             return false;
         }

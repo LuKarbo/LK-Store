@@ -47,7 +47,7 @@ public class UpdateUser extends AsyncTask<String, Void, Boolean> {
 
     private Boolean updateUserData(String userId) {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://localhost:8787/api/user/edit/" + userId;
+        String url = "https://lk-store-api.onrender.com/api/user/edit/" + userId;
 
         JSONObject requestBody = new JSONObject();
         try {

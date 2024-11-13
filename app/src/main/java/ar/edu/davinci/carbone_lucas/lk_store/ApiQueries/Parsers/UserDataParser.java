@@ -1,5 +1,7 @@
 package ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.Parsers;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,7 +22,7 @@ public class UserDataParser {
                 user.setAdmin(userData.getBoolean("isAdmin"));
                 user.setName(userData.getString("name"));
                 user.setAddress(userData.getString("address"));
-
+                Log.d("User_Data", "user: " + user.getUserId() + " | " +  user.isAdmin());
                 return user;
             } else {
                 return null;

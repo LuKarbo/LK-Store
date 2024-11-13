@@ -9,13 +9,14 @@ import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetAllUsers;
 import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.Login;
 import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.Register;
 import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.UpdateUser;
+import ar.edu.davinci.carbone_lucas.lk_store.Interface.LoginCallback;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 import ar.edu.davinci.carbone_lucas.lk_store.models.UserDTO;
 
 public class UserController {
 
-    public void login(String userId) {
-        Login loginTask = new Login();
+    public void login(String userId, LoginCallback callback) {
+        Login loginTask = new Login(callback);
         loginTask.execute(userId);
     }
 
@@ -35,8 +36,8 @@ public class UserController {
         }
     }
 
-    public void register(String name, String email, String pass){
+    public void register(String id, String name, String email, String pass){
         Register register = new Register();
-        register.execute(name, email, pass);
+        register.execute(id, name, email, pass);
     }
 }

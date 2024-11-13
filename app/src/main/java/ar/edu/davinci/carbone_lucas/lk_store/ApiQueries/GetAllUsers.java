@@ -49,7 +49,7 @@ public class GetAllUsers extends AsyncTask<Void, Void, List<UserDTO>> {
 
     private List<UserDTO> getAllUserData() {
         OkHttpClient client = new OkHttpClient();
-        String url = "http://localhost:8787/api/user";
+        String url = "https://lk-store-api.onrender.com/api/user";
 
         Request request = new Request.Builder()
                 .url(url)

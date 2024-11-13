@@ -51,7 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         alert = new TextView(this);
         alert.setId(View.generateViewId());
-        alert.setTextColor(getResources().getColor(R.color.alert)); // Usa tu color de alerta
+        alert.setTextColor(getResources().getColor(R.color.alert));
         alert.setTextSize(12);
         alert.setGravity(View.TEXT_ALIGNMENT_CENTER);
         alert.setVisibility(View.GONE);
@@ -82,7 +82,6 @@ public class RegisterActivity extends AppCompatActivity {
         regiserBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // validar contraseñas
                 if(!passwordInput.getText().toString().equals(passwordConfirmdInput.getText().toString())){
                     alert.setText("Las contraseñas deben ser iguales");
                     alert.setVisibility(View.VISIBLE);
@@ -95,26 +94,29 @@ public class RegisterActivity extends AppCompatActivity {
                     alert.setText("Email no válido");
                     alert.setVisibility(View.VISIBLE);
                 } else {
-
-                    Log.i("emailRegister", String.valueOf(emailInput.getText().toString()));
-                    // genero el registro en firebase
                     mAuth.createUserWithEmailAndPassword(emailInput.getText().toString(), passwordInput.getText().toString())
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        String userId = task.getResult().getUser().getUid();
 
-                                UserController uc = new UserController();
-                                uc.register(nameInput.getText().toString(),emailInput.getText().toString(),passwordInput.getText().toString());
+                                        UserController uc = new UserController();
+                                        uc.register(
+                                                userId,
+                                                nameInput.getText().toString(),
+                                                emailInput.getText().toString(),
+                                                passwordInput.getText().toString()
+                                        );
 
-                                Intent intentLogin = new Intent(RegisterActivity.this, LoginActivity.class);
-                                startActivity(intentLogin);
-                            } else {
-                                alert.setText("Error al registrarte");
-                                alert.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    });
+                                        Intent intentLogin = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        startActivity(intentLogin);
+                                    } else {
+                                        alert.setText("Error al registrarte");
+                                        alert.setVisibility(View.VISIBLE);
+                                    }
+                                }
+                            });
                 }
             }
         });

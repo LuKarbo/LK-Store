@@ -2,6 +2,7 @@ package ar.edu.davinci.carbone_lucas.lk_store;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        Log.d("User_Data", "Login 3: " + User.getInstance().isAdmin());
+
         if (item.getItemId() == R.id.home_menu_btn) {
             Fragment homeFragment = new HomeFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();

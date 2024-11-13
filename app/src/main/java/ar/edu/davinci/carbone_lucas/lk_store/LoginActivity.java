@@ -18,12 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Firebase;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.UserController;
+import ar.edu.davinci.carbone_lucas.lk_store.Interface.LoginCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -55,24 +54,37 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = nameInput.getText().toString();
                 String password = passwordInput.getText().toString();
-                // Log.i("firebase-testing", name);
-                // Log.i("firebase-testing", password);
 
                 // Agrego el uso del Auth para el login
-                mAuth.signInWithEmailAndPassword(name,password)
+                mAuth.signInWithEmailAndPassword(name, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     Log.i("firebase-login", mAuth.getCurrentUser().getEmail());
 
                                     UserController userController = new UserController();
-                                    userController.login(mAuth.getCurrentUser().getUid());
+                                    userController.login(mAuth.getCurrentUser().getUid(), new LoginCallback() {
+                                        @Override
+                                        public void onLoginSuccess(boolean success) {
+                                            Intent intentHome = new Intent(LoginActivity.this, MainActivity.class);
+                                            intentHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(intentHome);
+                                            finish();
+                                        }
 
-                                    Intent intentHome = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intentHome);
-                                }
-                                else{
+                                        @Override
+                                        public void onLoginError(String error) {
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    alert.setText("Error al obtener datos del usuario");
+                                                    alert.setVisibility(View.VISIBLE);
+                                                }
+                                            });
+                                        }
+                                    });
+                                } else {
                                     alert.setText("Credenciales inválidas");
                                     alert.setVisibility(View.VISIBLE);
                                 }
