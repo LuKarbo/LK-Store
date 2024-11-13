@@ -18,11 +18,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import ar.edu.davinci.carbone_lucas.lk_store.Controllers.UserController;
+
 public class RegisterActivity extends AppCompatActivity {
 
     TextView gotoLogin;
     Button regiserBTN;
     EditText emailInput;
+    EditText nameInput;
     EditText passwordInput;
     EditText passwordConfirmdInput;
     TextView alert;
@@ -42,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         gotoLogin = findViewById(R.id.register_goto);
 
         emailInput = findViewById(R.id.emailInput);
+        nameInput = findViewById(R.id.nameInput);
         passwordInput = findViewById(R.id.passwordInput);
         passwordConfirmdInput = findViewById(R.id.passwordConfirmdInput);
 
@@ -82,9 +86,13 @@ public class RegisterActivity extends AppCompatActivity {
                 if(!passwordInput.getText().toString().equals(passwordConfirmdInput.getText().toString())){
                     alert.setText("Las contraseñas deben ser iguales");
                     alert.setVisibility(View.VISIBLE);
-                } // valido name
-                else if (emailInput.getText().toString().equals("")) {
+                }
+                else if (nameInput.getText().toString().equals("")) {
                     alert.setText("Nombre no válido");
+                    alert.setVisibility(View.VISIBLE);
+                }
+                else if (emailInput.getText().toString().equals("")) {
+                    alert.setText("Email no válido");
                     alert.setVisibility(View.VISIBLE);
                 } else {
 
@@ -95,6 +103,10 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+
+                                UserController uc = new UserController();
+                                uc.register(nameInput.getText().toString(),emailInput.getText().toString(),passwordInput.getText().toString());
+
                                 Intent intentLogin = new Intent(RegisterActivity.this, LoginActivity.class);
                                 startActivity(intentLogin);
                             } else {

@@ -41,6 +41,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-auth:23.1.0")
     implementation ("com.google.android.material:material:1.9.0");
+    implementation("com.squareup.okhttp3:okhttp:4.9.0");
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

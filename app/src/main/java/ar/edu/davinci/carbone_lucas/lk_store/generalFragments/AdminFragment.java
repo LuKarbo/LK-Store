@@ -17,6 +17,7 @@ import ar.edu.davinci.carbone_lucas.lk_store.Controllers.UserController;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Support;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.SupportController;
+import ar.edu.davinci.carbone_lucas.lk_store.models.UserDTO;
 
 public class AdminFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -84,7 +85,7 @@ public class AdminFragment extends Fragment {
 
     private void showUsers() {
         UserController userController = new UserController();
-        List<UserController.UserDTO> users = userController.getAllUsers();
+        List<UserDTO> users = userController.getAllUsers();
         UserAdapter userAdapter = new UserAdapter(users);
         recyclerView.setAdapter(userAdapter);
     }

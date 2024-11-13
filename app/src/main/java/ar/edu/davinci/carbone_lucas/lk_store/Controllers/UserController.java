@@ -1,84 +1,42 @@
 package ar.edu.davinci.carbone_lucas.lk_store.Controllers;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetAllUsers;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.Login;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.Register;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.UpdateUser;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
+import ar.edu.davinci.carbone_lucas.lk_store.models.UserDTO;
 
 public class UserController {
 
     public void login(String userId) {
-        // consulta a la api con el userId
-        // recupero la info del usuario
-        // guardo los datos en la instancia
-        User user = User.getInstance();
-        user.setUserId(userId);
-        user.setName("John Doe");
-        user.setEmail("john.doe@example.com");
-        user.setPhoneNumber("123123123");
-        user.setPassword("123");
-        user.setAddress("Av. Corrientes 2037, C1001 Cdad. Autónoma de Buenos Aires");
-        user.setAdmin(true);
+        Login loginTask = new Login();
+        loginTask.execute(userId);
     }
 
     public void editUser(String name, String email, String phoneNumber, String address) {
         User user = User.getInstance();
-        user.setName(name);
-        user.setEmail(email);
-        user.setPhoneNumber(phoneNumber);
-        user.setAddress(address);
-    }
-
-
-    public static class UserDTO {
-        private String userId;
-        private String name;
-        private String email;
-        private String phoneNumber;
-        private String address;
-        private boolean isAdmin;
-
-        public UserDTO(String userId, String name, String email, String phoneNumber, String address, boolean isAdmin) {
-            this.userId = userId;
-            this.name = name;
-            this.email = email;
-            this.phoneNumber = phoneNumber;
-            this.address = address;
-            this.isAdmin = isAdmin;
-        }
-
-        public String getUserId() { return userId; }
-        public String getName() { return name; }
-        public String getEmail() { return email; }
-        public String getPhoneNumber() { return phoneNumber; }
-        public String getAddress() { return address; }
-        public boolean isAdmin() { return isAdmin; }
+        UpdateUser updateTask = new UpdateUser(name, email, phoneNumber, address);
+        updateTask.execute(user.getUserId());
     }
 
     public List<UserDTO> getAllUsers() {
-
-        List<UserDTO> users = new ArrayList<>();
-
-        users.add(new UserDTO(
-                "1",
-                "John Doe",
-                "john.doe@example.com",
-                "1234567890",
-                "123 Main St",
-                false
-        ));
-
-        users.add(new UserDTO(
-                "2",
-                "Jane Smith",
-                "jane.smith@example.com",
-                "0987654321",
-                "456 Oak Ave",
-                true
-        ));
-
-        return users;
+        GetAllUsers getAllUsersTask = new GetAllUsers();
+        try {
+            return getAllUsersTask.execute().get();
+        } catch (Exception e) {
+            Log.e("User_Data", "Error getting all users: " + e.getMessage());
+            return null;
+        }
     }
 
-
+    public void register(String name, String email, String pass){
+        Register register = new Register();
+        register.execute(name, email, pass);
+    }
 }

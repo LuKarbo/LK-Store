@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
-import ar.edu.davinci.carbone_lucas.lk_store.Controllers.UserController.UserDTO;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
+import ar.edu.davinci.carbone_lucas.lk_store.models.UserDTO;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private List<UserDTO> users;
