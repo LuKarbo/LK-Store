@@ -56,9 +56,9 @@ public class ViewProductFragment extends Fragment {
             Log.i("Argumentos ID", id);
             Log.i("Argumentos type", type);
         }
-        productController = new ProductController();
+        productController = ProductController.getInstance();
         menuController = new MenuController();
-        discountController = new DiscountController();
+        discountController = DiscountController.getInstance();
     }
 
     @Nullable

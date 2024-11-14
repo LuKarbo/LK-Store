@@ -6,14 +6,14 @@ public class Drink implements Product {
     private String Id;
     private String name;
     private double price;
-    private int stock;
+    private double originalePrice;
     private String img_url;
 
-    public Drink(String Id, String name, double price, int stock, String img_url) {
+    public Drink(String Id, String name, double price, double originalePrice, String img_url) {
         this.Id = Id;
         this.name = name;
         this.price = price;
-        this.stock = stock;
+        this.originalePrice = originalePrice;
         this.img_url = img_url;
     }
 
@@ -61,11 +61,11 @@ public class Drink implements Product {
         this.price = price;
     }
 
-    public int getStock() {
-        return stock;
+    public double getOriginalePrice() {
+        return originalePrice;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setOriginalePrice(int originalePrice) {
+        this.originalePrice = originalePrice;
     }
 }

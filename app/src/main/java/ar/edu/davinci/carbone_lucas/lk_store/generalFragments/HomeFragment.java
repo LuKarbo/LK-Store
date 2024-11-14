@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
         // Obtener los productos de la API
-        ProductController productService = new ProductController();
+        ProductController productService = ProductController.getInstance();
         MenuController menuController = new MenuController();
         List<Hamburger> hamburguesas = productService.getHamburgers();
         List<Fries> papasFritas = productService.getFries();

@@ -10,16 +10,16 @@ public class Fries implements Product {
     private boolean isDiscounted;
     private String name;
     private double price;
-    private int stock;
+    private double originalePrice;
     private String img_url;
 
-    public Fries(String Id, String discountId, boolean isDiscounted, String name, double price, int stock, String img_url) {
+    public Fries(String Id, String discountId, boolean isDiscounted, String name, double price, double originalePrice, String img_url) {
         this.discountId = discountId;
         this.Id = Id;
         this.isDiscounted = isDiscounted;
         this.name = name;
         this.price = price;
-        this.stock = stock;
+        this.originalePrice = originalePrice;
         this.img_url = img_url;
     }
 
@@ -68,7 +68,7 @@ public class Fries implements Product {
 
     public double getPrice() {
         if (isDiscounted) {
-            Discount discount = new DiscountController().getDiscount(this.discountId);
+            Discount discount = DiscountController.getInstance().getDiscount(this.discountId);
             if (discount != null) {
                 double discountAmount = this.price * (discount.getPercent() / 100.0);
                 return this.price - discountAmount;
@@ -81,11 +81,11 @@ public class Fries implements Product {
         this.price = price;
     }
 
-    public int getStock() {
-        return stock;
+    public double getOriginalePrice() {
+        return originalePrice;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setOriginalePrice(int originalePrice) {
+        this.originalePrice = originalePrice;
     }
 }

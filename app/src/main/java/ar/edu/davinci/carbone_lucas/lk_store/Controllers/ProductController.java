@@ -1,130 +1,94 @@
 package ar.edu.davinci.carbone_lucas.lk_store.Controllers;
+
+import android.os.AsyncTask;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Hamburger;
-import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Fries;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetDrinksApi;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetFriesApi;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetHamburguersAPI;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Drink;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Fries;
+import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Hamburger;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ProductController {
-    private static final String API_URL = "https://tu-api.com/";
+    private static ProductController instance;
+
+    private List<Hamburger> hamburgerList;
+    private List<Fries> friesList;
+    private List<Drink> drinkList;
+
+    private ProductController() {
+        loadData();
+    }
+
+    public static ProductController getInstance() {
+        if (instance == null) {
+            instance = new ProductController();
+        }
+        return instance;
+    }
+
+    private void loadData() {
+        GetHamburguersAPI hamburgerTask = new GetHamburguersAPI();
+        GetFriesApi friesTask = new GetFriesApi();
+        GetDrinksApi drinkTask = new GetDrinksApi();
+
+        try {
+            hamburgerList = hamburgerTask.execute().get();
+            friesList = friesTask.execute().get();
+            drinkList = drinkTask.execute().get();
+        } catch (Exception e) {
+            Log.e("ProductController", "Error loading food data: " + e.getMessage());
+        }
+    }
 
     public List<Hamburger> getHamburgers() {
-        // consultar la API Hamburger
-
-        List<Hamburger> hamburger_list = new ArrayList<>();
-        // Agrego las hamburguesas a la lista
-
-        // TEST
-        hamburger_list.add(new Hamburger("1","abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg"));
-        hamburger_list.add(new Hamburger("2","def456", true, "Big Mac", 7.99, 30, "https://example.com/bigmac.jpg"));
-        hamburger_list.add(new Hamburger("3",null, false, "Hamburguesa Sencilla", 4.99, 80, "https://example.com/hamburguesa-sencilla.jpg"));
-        hamburger_list.add(new Hamburger("4","ghi789", true, "Doble Queso", 6.49, 25, "https://example.com/doble-queso.jpg"));
-
-        return hamburger_list;
+        return hamburgerList;
     }
 
     public List<Fries> getFries() {
-        // consultar la API  Fries
-        List<Fries> fries_list = new ArrayList<>();
-        // Agrego las papas fritas a la lista
-
-        // TEST
-        fries_list.add(new Fries("1","mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg"));
-        fries_list.add(new Fries("2","pqr678", true, "Medium Fries", 3.29, 80, "https://example.com/medium-fries.jpg"));
-        fries_list.add(new Fries("3",null, false, "Papas Fritas", 2.99, 120, "https://example.com/papas-fritas.jpg"));
-        fries_list.add(new Fries("4","stu901", true, "Papas Deluxe", 3.99, 60, "https://example.com/papas-deluxe.jpg"));
-
-        return fries_list;
+        return friesList;
     }
 
     public List<Drink> getDrinks() {
-        // consultar la API Drink
-        List<Drink> bebidas = new ArrayList<>();
-        // Agrega las bebidas a la lista
-
-        // TEST
-        bebidas.add(new Drink("1","Cola", 2.29, 150, "https://example.com/cola.jpg"));
-        bebidas.add(new Drink( "2","Sprite", 2.29, 130, "https://example.com/sprite.jpg"));
-        bebidas.add(new Drink("3","Jugo de Naranja", 2.79, 100, "https://example.com/jugo-naranja.jpg"));
-        bebidas.add(new Drink("4","Té Helado", 2.49, 90, "https://example.com/te-helado.jpg"));
-
-        return bebidas;
+        return drinkList;
     }
 
     public Hamburger getHamburger(String id) {
-        // consultar la API Hamburger
-        List<Hamburger> lista_h = getHamburgers();
-        for(Hamburger item : lista_h){
-            if(item.getId().equalsIgnoreCase(id)){
+        for (Hamburger item : hamburgerList) {
+            if (item.getId().equalsIgnoreCase(id)) {
                 return item;
             }
         }
-        return new Hamburger("100000","", false, "TEST", 5.99, 50, "https://example.com/cheeseburger.jpg");
+        return new Hamburger("100000", "", false, "TEST", 5.99, 50, "https://example.com/cheeseburger.jpg");
     }
 
     public Fries getFries(String id) {
-        // consultar la API Fries
-        List<Fries> lista_f = getFries();
-        for(Fries item : lista_f){
-            if(item.getId().equalsIgnoreCase(id)){
+        for (Fries item : friesList) {
+            if (item.getId().equalsIgnoreCase(id)) {
                 return item;
             }
         }
-        return new Fries("100000","", false, "TEST", 2.49, 100, "https://example.com/small-fries.jpg");
+        return new Fries("100000", "", false, "TEST", 2.49, 100, "https://example.com/small-fries.jpg");
     }
 
     public Drink getDrink(String id) {
-        // consultar la API Drink
-
-        List<Drink> lista_d = getDrinks();
-        for(Drink item : lista_d){
-            if(item.getId().equalsIgnoreCase(id)){
+        for (Drink item : drinkList) {
+            if (item.getId().equalsIgnoreCase(id)) {
                 return item;
             }
         }
-
-        return new Drink("10000","TESt", 2.29, 150, "https://example.com/cola.jpg");
+        return new Drink("10000", "TESt", 2.29, 150, "https://example.com/cola.jpg");
     }
-
-    public List<String> getHamburgersIds(){
-        List<String> hamburgerIDs_list = new ArrayList<>();
-        // Agrego las hamburguesas a la lista
-
-        // TEST
-        hamburgerIDs_list.add(new Hamburger("1","abc123", true, "Cheeseburger", 5.99, 50, "https://example.com/cheeseburger.jpg").getId());
-        hamburgerIDs_list.add(new Hamburger("2","def456", true, "Big Mac", 7.99, 30, "https://example.com/bigmac.jpg").getId());
-        hamburgerIDs_list.add(new Hamburger("3",null, false, "Hamburguesa Sencilla", 4.99, 80, "https://example.com/hamburguesa-sencilla.jpg").getId());
-        hamburgerIDs_list.add(new Hamburger("4","ghi789", true, "Doble Queso", 6.49, 25, "https://example.com/doble-queso.jpg").getId());
-
-        return hamburgerIDs_list;
-    }
-
-    public List<String> getFriesIds(){
-        List<String> friesIDs_list = new ArrayList<>();
-        // Agrego las hamburguesas a la lista
-
-        // TEST
-        friesIDs_list.add(new Fries("1","mno345", true, "Small Fries", 2.49, 100, "https://example.com/small-fries.jpg").getId());
-        friesIDs_list.add(new Fries("2","pqr678", true, "Medium Fries", 3.29, 80, "https://example.com/medium-fries.jpg").getId());
-        friesIDs_list.add(new Fries("3",null, false, "Papas Fritas", 2.99, 120, "https://example.com/papas-fritas.jpg").getId());
-        friesIDs_list.add(new Fries("4","stu901", true, "Papas Deluxe", 3.99, 60, "https://example.com/papas-deluxe.jpg").getId());
-
-        return friesIDs_list;
-    }
-
-    public List<String> getDrinksIds(){
-        List<String> drinksIDs_list = new ArrayList<>();
-        // Agrego las hamburguesas a la lista
-
-        // TEST
-        drinksIDs_list.add(new Drink("1","Cola", 2.29, 150, "https://example.com/cola.jpg").getId());
-        drinksIDs_list.add(new Drink( "21","Sprite", 2.29, 130, "https://example.com/sprite.jpg").getId());
-        drinksIDs_list.add(new Drink("31","Jugo de Naranja", 2.79, 100, "https://example.com/jugo-naranja.jpg").getId());
-        drinksIDs_list.add(new Drink("4","Té Helado", 2.49, 90, "https://example.com/te-helado.jpg").getId());
-
-        return drinksIDs_list;
-    }
-
-
 }

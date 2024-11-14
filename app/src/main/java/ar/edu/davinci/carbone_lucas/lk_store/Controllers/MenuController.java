@@ -9,8 +9,8 @@ import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
 
 public class MenuController {
     public List<MenuData> getAllMenus() {
-        ProductController pc = new ProductController();
-        DiscountController dc = new DiscountController();
+        ProductController pc = ProductController.getInstance();
+        DiscountController dc = DiscountController.getInstance();
 
         List<Menu> allMenus = new ArrayList<>();
 
@@ -36,8 +36,8 @@ public class MenuController {
     }
 
     public List<MenuData> getDiscountedMenus() {
-        ProductController pc = new ProductController();
-        DiscountController dc = new DiscountController();
+        ProductController pc = ProductController.getInstance();
+        DiscountController dc = DiscountController.getInstance();
 
         List<Menu> discountedMenus = new ArrayList<>();
 
@@ -65,8 +65,8 @@ public class MenuController {
     }
 
     public MenuData getMenu(String id) {
-        ProductController pc = new ProductController();
-        DiscountController dc = new DiscountController();
+        ProductController pc = ProductController.getInstance();
+        DiscountController dc = DiscountController.getInstance();
 
         List<MenuData> allMenus = getAllMenus();
 

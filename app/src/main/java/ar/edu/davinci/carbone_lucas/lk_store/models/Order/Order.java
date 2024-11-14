@@ -21,7 +21,7 @@ public class Order {
         this.userId = userId;
         this.dateTime = new Date();
         this.orderData = orderData;
-        this.productService = new ProductController();
+        this.productService = ProductController.getInstance();
         this.menuController = new MenuController();
         this.setPrice();
     }

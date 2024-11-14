@@ -112,7 +112,7 @@ public class ProductListFragment extends Fragment {
     }
 
     private List<? extends Product> getProductList(String productType) {
-        ProductController productService = new ProductController();
+        ProductController productService = ProductController.getInstance();
         switch (productType) {
             case "Hamburguesas":
                 return productService.getHamburgers();
