@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment {
 
         // Obtener los productos de la API
         ProductController productService = ProductController.getInstance();
-        MenuController menuController = new MenuController();
+        MenuController menuController = MenuController.getInstance();
         List<Hamburger> hamburguesas = productService.getHamburgers();
         List<Fries> papasFritas = productService.getFries();
         List<Drink> bebidas = productService.getDrinks();
@@ -118,9 +118,13 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onAddToCartClick(MenuData menuData) {
-                Toast.makeText(getContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show();
-                OrderController oc = OrderController.getInstance(User.getInstance().getUserId());
-                oc.addItem(menuData.getType(),menuData.getId(),1);
+                if (menuData != null) {
+                    Toast.makeText(getContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show();
+                    OrderController oc = OrderController.getInstance(User.getInstance().getUserId());
+                    oc.addItem(menuData.getType(), menuData.getId(), 1);
+                } else {
+                    Toast.makeText(getContext(), "No se pudo agregar al carrito", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         recyclerViewRecommendedMenus.setAdapter(adapterMenu);

@@ -15,7 +15,7 @@ public class OrderData {
         this.foodId = foodId;
         this.foodType = foodType;
         this.productService = ProductController.getInstance();
-        this.menuController = new MenuController();
+        this.menuController = MenuController.getInstance();
     }
 
     public int getFoodAmount() {

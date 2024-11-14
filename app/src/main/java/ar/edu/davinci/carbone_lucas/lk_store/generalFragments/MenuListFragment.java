@@ -46,15 +46,19 @@ public class MenuListFragment extends Fragment {
         recyclerView = view.findViewById(R.id.product_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        MenuController menuController = new MenuController();
+        MenuController menuController = MenuController.getInstance();
         menuDataList = menuController.getAllMenus();
         adapter = new MenuListAdapter(menuDataList, (menuData) -> {
             ViewProductFragment viewProductFragment = ViewProductFragment.newInstance(menuData.getId(), menuData.getType());
             ((MainActivity) requireActivity()).replaceFragment(viewProductFragment);
         }, (menuData) -> {
-            Toast.makeText(getContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show();
-            OrderController oc = OrderController.getInstance(User.getInstance().getUserId());
-            oc.addItem(menuData.getType(),menuData.getId(),1);
+            if (menuData != null) {
+                Toast.makeText(getContext(), "Agregado al carrito", Toast.LENGTH_SHORT).show();
+                OrderController oc = OrderController.getInstance(User.getInstance().getUserId());
+                oc.addItem(menuData.getType(), menuData.getId(), 1);
+            } else {
+                Toast.makeText(getContext(), "No se pudo agregar al carrito", Toast.LENGTH_SHORT).show();
+            }
         });
         recyclerView.setAdapter(adapter);
 

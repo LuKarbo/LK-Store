@@ -1,61 +1,25 @@
 package ar.edu.davinci.carbone_lucas.lk_store.Controllers;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetOrdersApi;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Order.Order;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Order.OrderData;
-import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class OrderController {
     private Order currentOrder;
     private String userId;
     private static OrderController instance;
-    private static List<Order> simulatedOrders;
+    private static List<Order> orders;
 
     private OrderController(String userId) {
         this.userId = userId;
-        initializeSimulatedOrders();
+        this.orders = getOrders();
     }
-
-    private void initializeSimulatedOrders() {
-        simulatedOrders = new ArrayList<>();
-
-        List<OrderData> items1 = new ArrayList<>();
-        items1.add(new OrderData(2, "1", "hamburguesa"));
-        items1.add(new OrderData(1, "1", "bebida"));
-        Order order1 = new Order(UUID.randomUUID().toString(), "234", items1);
-
-        List<OrderData> items2 = new ArrayList<>();
-        items2.add(new OrderData(3, "1", "papas fritas"));
-        items2.add(new OrderData(1, "1", "menu"));
-        Order order2 = new Order(UUID.randomUUID().toString(), "234", items2);
-
-        List<OrderData> items3 = new ArrayList<>();
-        items3.add(new OrderData(1, "2", "hamburguesa"));
-        items3.add(new OrderData(2, "2", "menu"));
-        Order order3 = new Order(UUID.randomUUID().toString(), this.userId, items3);
-
-        List<OrderData> items4 = new ArrayList<>();
-        items4.add(new OrderData(2, "3", "hamburguesa"));
-        items4.add(new OrderData(1, "2", "papas fritas"));
-        items4.add(new OrderData(3, "1", "bebida"));
-        items4.add(new OrderData(1, "2", "menu"));
-        Order order4 = new Order(UUID.randomUUID().toString(), this.userId, items4);
-
-        List<OrderData> items5 = new ArrayList<>();
-        items5.add(new OrderData(4, "3", "bebida"));
-        items5.add(new OrderData(2, "4", "papas fritas"));
-        Order order5 = new Order(UUID.randomUUID().toString(), this.userId, items5);
-
-        simulatedOrders.add(order1);
-        simulatedOrders.add(order2);
-        simulatedOrders.add(order3);
-        simulatedOrders.add(order4);
-        simulatedOrders.add(order5);
-    }
-
 
     public static synchronized OrderController getInstance(String userId) {
         if (instance == null) {
@@ -143,10 +107,9 @@ public class OrderController {
         return currentOrder.getOrderData().isEmpty();
     }
 
-    // ---------------------- TERMINAR ----------------------
     public List<Order> getMyOrders(String userId) {
         List<Order> myOrders = new ArrayList<>();
-        for (Order order : simulatedOrders) {
+        for (Order order : orders) {
             if (order.getUserId().equals(userId)) {
                 myOrders.add(order);
             }
@@ -154,12 +117,13 @@ public class OrderController {
         return myOrders;
     }
 
-    public List<Order> getAllOrders() {
-        if (User.getInstance().isAdmin()) {
-            return new ArrayList<>(simulatedOrders);
-        } else {
-            return new ArrayList<>();
+    private List<Order> getOrders() {
+        GetOrdersApi getOrdersApi = new GetOrdersApi();
+        try {
+            orders = getOrdersApi.execute().get();
+        } catch (Exception e) {
+            Log.e("DiscountController", "Error loading discount data: " + e.getMessage());
         }
+        return orders;
     }
-
 }

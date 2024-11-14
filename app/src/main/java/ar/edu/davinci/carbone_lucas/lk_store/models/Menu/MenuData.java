@@ -51,13 +51,10 @@ public class MenuData {
     public String getType(){ return "Menu"; }
 
     public double getPrice() {
-        if (isDiscounted) {
-            Discount discount = this.discount;
-            if (discount != null) {
-                double discountAmount = this.price * (discount.getPercent() / 100.0);
-                return this.price - discountAmount;
-            }
+        if (isDiscounted && discount != null) {
+            double discountAmount = price * (discount.getPercent() / 100.0);
+            return price - discountAmount;
         }
-        return this.price;
+        return price;
     }
 }

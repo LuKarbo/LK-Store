@@ -16,14 +16,18 @@ public class Order {
     private ProductController productService;
     private MenuController menuController;
 
-    public Order(String id, String userId, List<OrderData> orderData) {
+    public Order(String id, String userId, List<OrderData> orderData, Date fecha) {
         this.id = id;
         this.userId = userId;
-        this.dateTime = new Date();
+        this.dateTime = (fecha != null) ? fecha : new Date();
         this.orderData = orderData;
         this.productService = ProductController.getInstance();
-        this.menuController = new MenuController();
+        this.menuController = MenuController.getInstance();
         this.setPrice();
+    }
+
+    public Order(String id, String userId, List<OrderData> orderData) {
+        this(id, userId, orderData, null);
     }
 
     public String getId() {
