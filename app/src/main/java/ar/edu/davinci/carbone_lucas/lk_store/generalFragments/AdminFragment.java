@@ -36,7 +36,7 @@ public class AdminFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         tabLayout = view.findViewById(R.id.tabLayout);
 
-        supportController = new SupportController();
+        supportController = SupportController.getInstance();
 
         setupTabs();
         setupRecyclerView();

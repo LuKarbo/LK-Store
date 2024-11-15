@@ -86,10 +86,6 @@ public class UserEditFragment extends Fragment {
         if (hasChanges) {
             userController.editUser(newName, newEmail, newPhoneNumber, newAddress);
             Toast.makeText(requireContext(), "Cuenta Actualizada", Toast.LENGTH_SHORT).show();
-
-            MyAccountFragment myAccountFragment = MyAccountFragment.newInstance();
-            ((MainActivity) requireActivity()).replaceFragment(myAccountFragment);
-
         } else {
             Toast.makeText(requireContext(), "No hay cambios para guardar", Toast.LENGTH_SHORT).show();
         }

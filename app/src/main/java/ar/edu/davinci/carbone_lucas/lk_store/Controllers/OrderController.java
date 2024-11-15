@@ -17,17 +17,29 @@ public class OrderController {
     private String userId;
     private static OrderController instance;
     private static List<Order> orders;
+    private static final long UPDATE_INTERVAL = 190000;
+    private long lastUpdated;
 
     private OrderController(String userId) {
         this.userId = userId;
-        this.orders = getOrders();
+        loadOrders();
     }
 
     public static synchronized OrderController getInstance(String userId) {
-        if (instance == null) {
+        if (instance == null || System.currentTimeMillis() - instance.lastUpdated > UPDATE_INTERVAL) {
             instance = new OrderController(userId);
         }
         return instance;
+    }
+
+    private void loadOrders() {
+        GetOrdersApi getOrdersApi = new GetOrdersApi();
+        try {
+            orders = getOrdersApi.execute().get();
+            lastUpdated = System.currentTimeMillis();
+        } catch (Exception e) {
+            Log.e("OrderController", "Error loading order data: " + e.getMessage());
+        }
     }
 
     private void initializeOrderIfNeeded() {
@@ -117,16 +129,6 @@ public class OrderController {
             }
         }
         return myOrders;
-    }
-
-    private List<Order> getOrders() {
-        GetOrdersApi getOrdersApi = new GetOrdersApi();
-        try {
-            orders = getOrdersApi.execute().get();
-        } catch (Exception e) {
-            Log.e("DiscountController", "Error loading discount data: " + e.getMessage());
-        }
-        return orders;
     }
 
     public boolean createOrder() {

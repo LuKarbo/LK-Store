@@ -72,8 +72,8 @@ public class SupportFragment extends Fragment {
                 progressBar.setVisibility(View.VISIBLE);
                 enviarButton.setEnabled(false);
 
-                SupportController sc = new SupportController();
-                sc.enviarConsulta("1", User.getInstance().getUserId(), email, consulta);
+                SupportController sc = SupportController.getInstance();
+                sc.enviarConsulta(User.getInstance().getUserId(), email, consulta);
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

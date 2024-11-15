@@ -46,4 +46,8 @@ public class Support {
     }
 
     public Date getFechaRespuesta() { return fechaRespuesta; }
+
+    public void setFechaRespuesta(Date fechaRespuesta) {
+        this.fechaRespuesta = fechaRespuesta;
+    }
 }

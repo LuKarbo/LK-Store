@@ -48,7 +48,7 @@ public class MySupportFragment extends Fragment {
 
     private void loadSupports() {
         // Obtener consultas y separarlas
-        SupportController supportController = new SupportController();
+        SupportController supportController = SupportController.getInstance();
         List<Support> allSupports = supportController.getMisConsultas();
         answeredList = new ArrayList<>();
         pendingList = new ArrayList<>();

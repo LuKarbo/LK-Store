@@ -4,68 +4,69 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetSupportsApi;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.PostSupportAPI;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.PutSupportReplyApi;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Support;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class SupportController {
-    public void enviarConsulta(String id,String userId, String email, String consulta){
-        Support support = new Support(id,userId,email,consulta);
+    private static SupportController instance;
+    private List<Support> supportList;
+    private long lastUpdated;
+    private static final long UPDATE_INTERVAL = 120000;
 
-        // Envio a la api
+    private SupportController() {
+        loadData();
+    }
 
+    public static SupportController getInstance() {
+        if (instance == null || System.currentTimeMillis() - instance.lastUpdated > UPDATE_INTERVAL) {
+            instance = new SupportController();
+        }
+        return instance;
+    }
+
+    private void loadData() {
+        GetSupportsApi supportsTask = new GetSupportsApi();
+
+        try {
+            supportList = supportsTask.execute().get();
+            lastUpdated = System.currentTimeMillis();
+        } catch (Exception e) {
+            Log.e("SupportController", "Error loading support data: " + e.getMessage());
+        }
     }
 
     public List<Support> getConsultas() {
-        // consultar la API Support
-
-        List<Support> support_list = new ArrayList<>();
-
-        // TEST
-        support_list.add(new Support("1", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("2", "2","test3@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("3", "12314","test3@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("4", "4r653456","test3@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("5", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("6", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("7", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
-        support_list.add(new Support("8", User.getInstance().getUserId(),"test2@gmail.com", "Mi consuultaaaaaa"));
-
-        return support_list;
+        return supportList;
     }
 
     public List<Support> getMisConsultas() {
-        // consultar la API Support
+        Log.i("Consultas: ", supportList.toString());
+        String userId = User.getInstance().getUserId();
+        return supportList.stream()
+                .filter(support -> support.getUserId().equals(userId))
+                .collect(Collectors.toList());
+    }
 
-        List<Support> support_list = getConsultas();
+    public void responderConsulta(String id, String respuesta) {
+        PutSupportReplyApi PutSupportReplyApi = new PutSupportReplyApi();
+        PutSupportReplyApi.execute(id, respuesta);
+    }
 
-        // TEST
-        List<Support> mySupportList = new ArrayList<>();
-        int i = 0;
-        for (Support sup: support_list) {
-            if(sup.getUserId().equals(User.getInstance().getUserId())){
-                if(i < 2){
-                    sup.setRespuesta("Respuestaaaaaa");
-                    i++;
-                }
-                mySupportList.add(sup);
-            }
+    public void enviarConsulta(String userId, String email, String consulta) {
+        Support support = new Support(null, userId, email, consulta);
+        PostSupportAPI postSupportAPI = new PostSupportAPI();
+        try {
+            postSupportAPI.execute(support).get();
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-
-        return mySupportList;
     }
-
-    public Support getConsulta(String id){
-        return getConsultas().stream()
-                .filter(support -> support.getId().equals(id))
-                .findFirst()
-                .orElse(null);
-
-    }
-
-    public void responderConsulta(String id, String respuesta){
-        Support sup = getConsulta(id);
-        sup.setRespuesta(respuesta);
-    }
-
 }
