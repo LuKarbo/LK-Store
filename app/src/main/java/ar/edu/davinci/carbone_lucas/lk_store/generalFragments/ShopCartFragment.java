@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import ar.edu.davinci.carbone_lucas.lk_store.Adapters.CartAdapter;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.PostOrdersApi;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 
 import android.widget.Button;
@@ -53,9 +54,14 @@ public class ShopCartFragment extends Fragment implements CartAdapter.CartAdapte
             public void onClick(View view) {
                 if (orderController != null && !orderController.isOrderEmpty()) {
                     if(User.getInstance().getAddress() != null && !User.getInstance().getAddress().isEmpty()){
-                        Toast.makeText(getContext(), "Orden confirmada", Toast.LENGTH_SHORT).show();
-                        orderController.clearOrder();
-                        updateUI();
+                        if(orderController.createOrder()){
+                            Toast.makeText(getContext(), "Orden confirmada", Toast.LENGTH_SHORT).show();
+                            orderController.clearOrder();
+                            updateUI();
+                        }
+                        else{
+                            Toast.makeText(getContext(), "Error al procesar su Orden", Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else{
                         Toast.makeText(getContext(), "Vaya a su cuenta y Agregue su dirección", Toast.LENGTH_SHORT).show();

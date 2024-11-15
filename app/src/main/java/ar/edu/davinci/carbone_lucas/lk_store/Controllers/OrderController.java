@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.UUID;
 
 import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetOrdersApi;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.PostOrdersApi;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Order.Order;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Order.OrderData;
+import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class OrderController {
     private Order currentOrder;
@@ -125,5 +127,18 @@ public class OrderController {
             Log.e("DiscountController", "Error loading discount data: " + e.getMessage());
         }
         return orders;
+    }
+
+    public boolean createOrder() {
+        PostOrdersApi postOrdersApi = new PostOrdersApi();
+        boolean success = false;
+
+        try {
+            success = postOrdersApi.execute(getCurrentOrder()).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return success;
     }
 }
