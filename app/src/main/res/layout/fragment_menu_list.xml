@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="@dimen/menu_list_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,10 +21,10 @@
 
         <TextView
             android:id="@+id/menu_title"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="24sp"
+            android:textSize="@dimen/_24sp"
             android:textStyle="bold"
             android:textColor="@color/gotoRegisterLogin" />
 
@@ -34,10 +34,10 @@
         android:id="@+id/menu_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Producto"
+        android:hint="@string/producto"
         android:inputType="text"
         android:maxLines="1"
-        android:padding="12dp"
+        android:padding="@dimen/_12dp"
         android:background="@drawable/rounded_bg"
         android:textColor="@color/text"
         android:textColorHint="@color/hint" />
@@ -45,8 +45,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menu_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/_0dp"
         android:layout_weight="1"
-        android:paddingTop="16dp" />
+        android:paddingTop="@dimen/_16dp" />
 
 </LinearLayout>

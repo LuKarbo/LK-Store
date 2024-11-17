@@ -20,7 +20,6 @@ import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.HomeFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MenuListFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.MyAccountFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.ShopCartFragment;
-import ar.edu.davinci.carbone_lucas.lk_store.generalFragments.SettingsFragment;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class MainActivity extends AppCompatActivity {

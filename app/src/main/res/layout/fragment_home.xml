@@ -10,12 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Banners -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/BannersContainer"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_margin="10dp"
+            android:layout_height="@dimen/banner_container_height"
+            android:layout_margin="@dimen/banner_container_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -27,12 +26,11 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Botones de Opciones -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btnConstrain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/BannersContainer">
@@ -41,7 +39,7 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/_8dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:weightSum="4"
@@ -49,45 +47,41 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <!-- Boton de burger_list -->
                 <ImageButton
                     android:id="@+id/burger_list"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="@dimen/list_btn_hight"
+                    android:layout_margin="@dimen/list_btn_margin"
                     android:layout_weight="1"
                     android:src="@drawable/btn_hambur"
                     android:scaleType="fitCenter"
                     android:background="?attr/selectableItemBackground" />
 
-                <!-- Boton de papas_list -->
                 <ImageButton
                     android:id="@+id/papas_list"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="@dimen/list_btn_hight"
+                    android:layout_margin="@dimen/list_btn_margin"
                     android:layout_weight="1"
                     android:src="@drawable/btn_papas"
                     android:scaleType="fitCenter"
                     android:background="?attr/selectableItemBackground" />
 
-                <!-- Boton de drink_list -->
                 <ImageButton
                     android:id="@+id/drink_list"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="@dimen/list_btn_hight"
+                    android:layout_margin="@dimen/list_btn_margin"
                     android:layout_weight="1"
                     android:src="@drawable/btn_bebidas"
                     android:scaleType="fitCenter"
                     android:background="?attr/selectableItemBackground" />
 
-                <!-- Boton de combos_list -->
                 <ImageButton
                     android:id="@+id/soporte"
-                    android:layout_width="0dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
+                    android:layout_width="@dimen/_0dp"
+                    android:layout_height="@dimen/list_btn_hight"
+                    android:layout_margin="@dimen/list_btn_margin"
                     android:layout_weight="1"
                     android:src="@drawable/btn_soporte"
                     android:scaleType="fitCenter"
@@ -100,10 +94,10 @@
             android:id="@+id/info_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/_8dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:layout_marginEnd="@dimen/_8dp"
+            android:layout_marginBottom="@dimen/_8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -121,10 +115,10 @@
                     android:id="@+id/title_descuentos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="TextView"
-                    android:textSize="18sp"
+                    android:layout_marginStart="@dimen/_8dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:text="@string/exampleText"
+                    android:textSize="@dimen/_18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -133,7 +127,7 @@
                     android:id="@+id/descuentos_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/_8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -150,7 +144,7 @@
                 android:id="@+id/recomendados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/_8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -160,10 +154,10 @@
                     android:id="@+id/title_recommended"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Menus en Descuento"
-                    android:textSize="18sp"
+                    android:layout_marginStart="@dimen/_8dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:text="@string/menus_en_descuento"
+                    android:textSize="@dimen/_18sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -172,7 +166,7 @@
                     android:id="@+id/recyclerView_recommended_menus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/_8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

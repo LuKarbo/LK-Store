@@ -2,13 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="@dimen/_8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/_16dp">
 
         <TextView
             android:id="@+id/textEmail"
@@ -20,19 +20,19 @@
             android:id="@+id/textConsulta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="@dimen/_8dp" />
 
         <TextView
             android:id="@+id/textFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="@dimen/_8dp" />
 
         <TextView
             android:id="@+id/textRespuesta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/_8dp"
             android:visibility="gone" />
 
         <LinearLayout
@@ -40,13 +40,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="@dimen/_8dp">
 
             <EditText
                 android:id="@+id/editRespuesta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Escribe tu respuesta..."
+                android:hint="@string/escribe_tu_respuesta"
                 android:minLines="2" />
 
             <Button
@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="Responder"
+                android:text="@string/responder"
                 android:textColor="@color/white"/>
         </LinearLayout>
 

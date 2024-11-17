@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_margin="@dimen/_4dp"
+    app:cardCornerRadius="@dimen/_8dp"
+    app:cardElevation="@dimen/_4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="@dimen/_12dp">
 
         <TextView
             android:id="@+id/tvId"
@@ -23,25 +23,25 @@
             android:id="@+id/tvFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="@dimen/_4dp"/>
 
         <TextView
             android:id="@+id/tvConsulta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="@dimen/_8dp"/>
 
         <TextView
             android:id="@+id/tvFechaRespuesta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"/>
+            android:layout_marginTop="@dimen/_4dp"/>
 
         <TextView
             android:id="@+id/tvRespuesta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="@dimen/_8dp"/>
 
     </LinearLayout>
 

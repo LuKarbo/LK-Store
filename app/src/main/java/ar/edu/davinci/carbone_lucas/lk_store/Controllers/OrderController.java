@@ -17,7 +17,7 @@ public class OrderController {
     private String userId;
     private static OrderController instance;
     private static List<Order> orders;
-    private static final long UPDATE_INTERVAL = 190000;
+    private static final long UPDATE_INTERVAL = 90000;
     private long lastUpdated;
 
     private OrderController(String userId) {

@@ -3,28 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
+    android:layout_margin="@dimen/_8dp"
+    app:cardCornerRadius="@dimen/_8dp"
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="@dimen/_16dp">
 
         <ImageView
             android:id="@+id/imageView_menu"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/img_dim"
+            android:layout_height="@dimen/img_dim"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView_Product_name"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:textSize="16sp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:textSize="@dimen/_16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView_menu"
@@ -32,22 +32,22 @@
 
         <TextView
             android:id="@+id/textView_menu_price"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textSize="@dimen/_14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView_menu"
             app:layout_constraintTop_toBottomOf="@+id/textView_Product_name" />
 
         <TextView
             android:id="@+id/textView_is_discounted"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp"
+            android:layout_marginStart="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:textSize="@dimen/_14sp"
             android:textStyle="italic"
             android:textColor="@color/red"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,32 +56,32 @@
 
         <Button
             android:id="@+id/button_view_Product"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/_16dp"
+            android:layout_marginEnd="@dimen/_8dp"
             android:background="@drawable/button_style"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
+            android:paddingStart="@dimen/_12dp"
+            android:paddingEnd="@dimen/_12dp"
             android:text="@string/ver_producto"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/_14sp"
             app:layout_constraintEnd_toStartOf="@+id/button_add_to_cart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_is_discounted" />
 
         <Button
             android:id="@+id/button_add_to_cart"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="@dimen/_8dp"
+            android:layout_marginTop="@dimen/_16dp"
             android:background="@drawable/button_style"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
+            android:paddingStart="@dimen/_12dp"
+            android:paddingEnd="@dimen/_12dp"
             android:text="@string/agregar_al_carrito"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="@dimen/_14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_view_Product"
             app:layout_constraintTop_toBottomOf="@+id/textView_is_discounted" />

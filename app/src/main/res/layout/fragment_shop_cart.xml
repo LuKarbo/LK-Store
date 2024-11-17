@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="@dimen/_16dp">
 
         <ImageButton
             android:id="@+id/back_button"
@@ -16,16 +16,16 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:background="?attr/selectableItemBackground"
-            android:contentDescription="Atrás"
-            android:padding="8dp"
+            android:contentDescription="@string/back"
+            android:padding="@dimen/_8dp"
             android:src="@drawable/ic_back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="Carrito de Compras"
-            android:textSize="18sp"
+            android:text="@string/carrito_de_compras"
+            android:textSize="@dimen/_18sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
@@ -34,29 +34,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/_16dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cart_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/_0dp"
             android:layout_weight="1" />
 
         <TextView
             android:id="@+id/total_price_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_16dp"
             android:textAlignment="center"
-            android:textSize="18sp"
+            android:textSize="@dimen/_18sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/confirm_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Confirmar Compra"
+            android:layout_marginTop="@dimen/_16dp"
+            android:text="@string/confirmar_compra"
             android:textColor="@color/white"/>
 
     </LinearLayout>

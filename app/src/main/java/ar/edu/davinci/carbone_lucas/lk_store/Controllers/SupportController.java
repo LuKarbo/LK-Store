@@ -17,7 +17,7 @@ public class SupportController {
     private static SupportController instance;
     private List<Support> supportList;
     private long lastUpdated;
-    private static final long UPDATE_INTERVAL = 120000;
+    private static final long UPDATE_INTERVAL = 30000;
 
     private SupportController() {
         loadData();

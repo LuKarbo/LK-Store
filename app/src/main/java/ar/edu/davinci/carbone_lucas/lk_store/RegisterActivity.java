@@ -82,7 +82,11 @@ public class RegisterActivity extends AppCompatActivity {
         regiserBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!passwordInput.getText().toString().equals(passwordConfirmdInput.getText().toString())){
+                if (passwordInput.getText().toString().length() < 6) {
+                    alert.setText("La contraseña debe tener al menos 6 caracteres");
+                    alert.setVisibility(View.VISIBLE);
+                }
+                else if(!passwordInput.getText().toString().equals(passwordConfirmdInput.getText().toString())){
                     alert.setText("Las contraseñas deben ser iguales");
                     alert.setVisibility(View.VISIBLE);
                 }
