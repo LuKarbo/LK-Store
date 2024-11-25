@@ -9,6 +9,7 @@ import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.GetAllUsers;
 import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.Login;
 import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.Register;
 import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.UpdateUser;
+import ar.edu.davinci.carbone_lucas.lk_store.ApiQueries.UpdateUserRole;
 import ar.edu.davinci.carbone_lucas.lk_store.Interface.LoginCallback;
 import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 import ar.edu.davinci.carbone_lucas.lk_store.models.UserDTO;
@@ -20,9 +21,9 @@ public class UserController {
         loginTask.execute(userId);
     }
 
-    public void editUser(String name, String email, String phoneNumber, String address) {
+    public void editUser(String name, String phoneNumber, String address) {
         User user = User.getInstance();
-        UpdateUser updateTask = new UpdateUser(name, email, phoneNumber, address);
+        UpdateUser updateTask = new UpdateUser(name, phoneNumber, address);
         updateTask.execute(user.getUserId());
     }
 
@@ -39,5 +40,9 @@ public class UserController {
     public void register(String id, String name, String email, String pass){
         Register register = new Register();
         register.execute(id, name, email, pass);
+    }
+
+    public static void changeRol(String userId, Boolean isAdmin){
+        new UpdateUserRole(isAdmin).execute(userId);
     }
 }

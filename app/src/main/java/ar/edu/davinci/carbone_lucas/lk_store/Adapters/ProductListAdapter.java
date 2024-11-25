@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.ImageLoader;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.interfaces.Product;
 
@@ -43,7 +44,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.priceTextView.setText(String.format("$%.2f", product.getPrice()));
         holder.isDiscountedTextView.setText(product.isDiscounted() ? "En Descuento!" : "");
         holder.isDiscountedTextView.setTextColor(product.isDiscounted() ? ContextCompat.getColor(holder.itemView.getContext(), R.color.alert) : ContextCompat.getColor(holder.itemView.getContext(), R.color.gotoRegisterLogin));
-        holder.imageView.setImageURI(Uri.parse(product.getImg_url()));
+        ImageLoader.loadImage(holder.imageView, product.getImg_url());
         holder.viewProductButton.setOnClickListener(v -> viewProductClickListener.onViewProductClick(product));
         holder.addToCartButton.setOnClickListener(v -> addToCartClickListener.onAddToCartClick(product));
     }

@@ -192,8 +192,7 @@ public class HomeFragment extends Fragment {
                         product.getId(),
                         product.getName(),
                         String.format("$%.2f", product.getPrice()),
-                        // cambiar por el proceso de imagen api: product.getImg_url()
-                        R.drawable.hambur_1,
+                        product.getImg_url(),
                         type
                 ));
                 count++;

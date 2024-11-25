@@ -32,15 +32,24 @@ public class GetMenusApi extends AsyncTask<String, Integer, List<Menu>> {
                 JSONArray menuArray = jsonResponse.getJSONArray("menus");
                 for (int i = 0; i < menuArray.length(); i++) {
                     JSONObject menuJson = menuArray.getJSONObject(i);
+
                     String id = menuJson.getString("id");
-                    String hamburgerId = menuJson.getJSONObject("hamburger").getString("id");
-                    String friesId = menuJson.getJSONObject("fries").getString("id");
-                    String drinkId = menuJson.getJSONObject("drink").getString("id");
+                    String hamburgerId = menuJson.has("hamburger") && !menuJson.isNull("hamburger")
+                            ? menuJson.getJSONObject("hamburger").getString("id")
+                            : null;
+                    String friesId = menuJson.has("fries") && !menuJson.isNull("fries")
+                            ? menuJson.getJSONObject("fries").getString("id")
+                            : null;
+                    String drinkId = menuJson.has("drink") && !menuJson.isNull("drink")
+                            ? menuJson.getJSONObject("drink").getString("id")
+                            : null;
+
                     String discount = menuJson.getString("discount");
+                    String img_url = menuJson.getString("img_url");
                     boolean isDiscounted = menuJson.getBoolean("isDiscounted");
                     double totalPrice = menuJson.getDouble("totalPrice");
 
-                    allMenus.add(new Menu(id, hamburgerId, friesId, drinkId, discount, isDiscounted, totalPrice));
+                    allMenus.add(new Menu(id, hamburgerId, friesId, drinkId, discount, isDiscounted, totalPrice, img_url));
                 }
             }
         } catch (IOException | JSONException e) {

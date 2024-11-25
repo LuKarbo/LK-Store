@@ -8,8 +8,9 @@ public class Menu {
     private boolean isDiscounted;
     private String discountId;
     private double price;
+    private String img_url;
 
-    public Menu(String id, String hamburgerId, String friesId, String drinkId, String discountId, boolean isDiscounted, double price) {
+    public Menu(String id, String hamburgerId, String friesId, String drinkId, String discountId, boolean isDiscounted, double price, String img_url) {
         this.id = id;
         this.discountId = discountId;
         this.hamburgerId = hamburgerId;
@@ -17,6 +18,7 @@ public class Menu {
         this.drinkId = drinkId;
         this.isDiscounted = isDiscounted;
         this.price = price;
+        this.img_url = img_url;
     }
 
     public String getId() {
@@ -38,6 +40,8 @@ public class Menu {
     public String getDrinkId() {
         return drinkId;
     }
+
+    public String getImg_url(){ return img_url; }
 
     public boolean isDiscounted() {
         return isDiscounted;

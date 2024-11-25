@@ -21,7 +21,7 @@ import ar.edu.davinci.carbone_lucas.lk_store.models.User;
 
 public class UserEditFragment extends Fragment {
 
-    private EditText etName, etEmail, etPhoneNumber, etAddress;
+    private EditText etName, etPhoneNumber, etAddress;
     private Button btnSave;
     private ImageButton backButton;
     private TextView tvTitle;
@@ -42,7 +42,6 @@ public class UserEditFragment extends Fragment {
 
         tvTitle = view.findViewById(R.id.tv_title);
         etName = view.findViewById(R.id.et_name);
-        etEmail = view.findViewById(R.id.et_email);
         etPhoneNumber = view.findViewById(R.id.et_phone_number);
         etAddress = view.findViewById(R.id.et_address);
         btnSave = view.findViewById(R.id.btn_save);
@@ -67,24 +66,21 @@ public class UserEditFragment extends Fragment {
 
     private void loadUserInfo() {
         etName.setText(currentUser.getName());
-        etEmail.setText(currentUser.getEmail());
         etPhoneNumber.setText(currentUser.getPhoneNumber());
         etAddress.setText(currentUser.getAddress());
     }
 
     private void saveUserInfo() {
         String newName = etName.getText().toString();
-        String newEmail = etEmail.getText().toString();
         String newPhoneNumber = etPhoneNumber.getText().toString();
         String newAddress = etAddress.getText().toString();
 
         boolean hasChanges = !newName.equals(currentUser.getName())
-                || !newEmail.equals(currentUser.getEmail())
                 || !newPhoneNumber.equals(currentUser.getPhoneNumber())
                 || !newAddress.equals(currentUser.getAddress());
 
         if (hasChanges) {
-            userController.editUser(newName, newEmail, newPhoneNumber, newAddress);
+            userController.editUser(newName, newPhoneNumber, newAddress);
             Toast.makeText(requireContext(), "Cuenta Actualizada", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(requireContext(), "No hay cambios para guardar", Toast.LENGTH_SHORT).show();

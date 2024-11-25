@@ -69,4 +69,5 @@
     <string name="escribe_tu_respuesta">Escribe tu respuesta...</string>
     <string name="responder">Responder</string>
     <string name="email">Email</string>
+    <string name="cambiar_permisos">Cambiar Permisos</string>
 </resources>

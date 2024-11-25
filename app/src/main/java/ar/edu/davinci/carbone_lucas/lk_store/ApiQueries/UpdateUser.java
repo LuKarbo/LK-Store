@@ -19,13 +19,11 @@ import java.io.IOException;
 
 public class UpdateUser extends AsyncTask<String, Void, Boolean> {
     private String name;
-    private String email;
     private String phoneNumber;
     private String address;
 
-    public UpdateUser(String name, String email, String phoneNumber, String address) {
+    public UpdateUser(String name, String phoneNumber, String address) {
         this.name = name;
-        this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
@@ -52,7 +50,6 @@ public class UpdateUser extends AsyncTask<String, Void, Boolean> {
         JSONObject requestBody = new JSONObject();
         try {
             requestBody.put("name", name);
-            requestBody.put("email", email);
             requestBody.put("phoneNumber", phoneNumber);
             requestBody.put("address", address);
         } catch (JSONException e) {

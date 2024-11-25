@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.ImageLoader;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
 
@@ -45,7 +46,7 @@ public class RecommendedMenuAdapter extends RecyclerView.Adapter<RecommendedMenu
         MenuData menuData = menusList.get(position);
 
         // Establecer los valores en la vista
-        holder.imageViewMenu.setImageResource(R.drawable.hambur_1); // remplazar por menuData.getHamburger().getImg_url()
+        ImageLoader.loadImage(holder.imageViewMenu, menuData.getImg_url());
         holder.textViewMenuName.setText(menuData.getHamburger().getName() + " | " + menuData.getFries().getName() + " | " + menuData.getDrink().getName());
         holder.textViewMenuPrice.setText(String.format("$%.2f", menuData.getPrice()));
 

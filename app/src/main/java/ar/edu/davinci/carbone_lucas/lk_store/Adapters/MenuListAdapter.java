@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import ar.edu.davinci.carbone_lucas.lk_store.ImageLoader;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Menu.MenuData;
 
@@ -42,7 +43,7 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuListAdapter.ViewHo
         holder.priceTextView.setText(String.format("$%.2f", menuData.getPrice()));
         holder.isDiscountedTextView.setText(menuData.isDiscounted() ? "En Descuento!" : "");
         holder.isDiscountedTextView.setTextColor(menuData.isDiscounted() ? ContextCompat.getColor(holder.itemView.getContext(), R.color.alert) : ContextCompat.getColor(holder.itemView.getContext(), R.color.gotoRegisterLogin));
-        holder.imageView.setImageURI(Uri.parse(menuData.getHamburger().getImg_url()));
+        ImageLoader.loadImage(holder.imageView, menuData.getImg_url());
         holder.viewProductButton.setOnClickListener(v -> viewProductClickListener.onViewProductClick(menuData));
         holder.addToCartButton.setOnClickListener(v -> addToCartClickListener.onAddToCartClick(menuData));
     }

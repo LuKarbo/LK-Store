@@ -13,8 +13,9 @@ public class MenuData {
     private Discount discount;
     private boolean isDiscounted;
     private double price;
+    private String img_url;
 
-    public MenuData(String id, Hamburger hamburger, Fries fries, Drink drink, Discount discount, boolean isDiscounted, double price) {
+    public MenuData(String id, Hamburger hamburger, Fries fries, Drink drink, Discount discount, boolean isDiscounted, double price, String img_url) {
         this.id = id;
         this.hamburger = hamburger;
         this.fries = fries;
@@ -22,6 +23,7 @@ public class MenuData {
         this.discount = discount;
         this.isDiscounted = isDiscounted;
         this.price = price;
+        this.img_url = img_url;
     }
 
     public String getId() {
@@ -49,6 +51,8 @@ public class MenuData {
     }
 
     public String getType(){ return "Menu"; }
+
+    public String getImg_url() {return img_url; }
 
     public double getPrice() {
         if (isDiscounted && discount != null) {

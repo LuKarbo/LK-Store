@@ -45,7 +45,8 @@ public class MenuController {
                     pc.getDrink(menu.getDrinkId()),
                     dc.getDiscount(menu.getDiscountId()),
                     menu.isDiscounted(),
-                    menu.getPrice()
+                    menu.getPrice(),
+                    menu.getImg_url()
             );
             menuDataList.add(menuData);
         }

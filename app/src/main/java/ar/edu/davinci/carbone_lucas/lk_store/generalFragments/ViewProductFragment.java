@@ -20,6 +20,7 @@ import ar.edu.davinci.carbone_lucas.lk_store.Controllers.DiscountController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.MenuController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.OrderController;
 import ar.edu.davinci.carbone_lucas.lk_store.Controllers.ProductController;
+import ar.edu.davinci.carbone_lucas.lk_store.ImageLoader;
 import ar.edu.davinci.carbone_lucas.lk_store.R;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Discount.Discount;
 import ar.edu.davinci.carbone_lucas.lk_store.models.Food.Drink;
@@ -92,7 +93,7 @@ public class ViewProductFragment extends Fragment {
             case "Hamburguesa":
                 Hamburger hamburger = productController.getHamburger(id);
                 if (hamburger != null) {
-                    productImage.setImageResource(R.drawable.hambur_2);
+                    ImageLoader.loadImage(productImage, hamburger.getImg_url());
                     productName.setText(hamburger.getName());
                     productPrice.setText(String.format("%.2f", hamburger.getPrice()));
                     if (hamburger.isDiscounted()) {
@@ -112,7 +113,7 @@ public class ViewProductFragment extends Fragment {
             case "Papas Fritas":
                 Fries fries = productController.getFries(id);
                 if (fries != null) {
-                    productImage.setImageResource(R.drawable.hambur_1);
+                    ImageLoader.loadImage(productImage, fries.getImg_url());
                     productName.setText(fries.getName());
                     productPrice.setText(String.format("%.2f", fries.getPrice()));
                     if (fries.isDiscounted()) {
@@ -133,7 +134,7 @@ public class ViewProductFragment extends Fragment {
                 Drink drink = productController.getDrink(id);
                 if (drink != null) {
 
-                    productImage.setImageResource(R.drawable.hambur_3);
+                    ImageLoader.loadImage(productImage, drink.getImg_url());
                     productName.setText(drink.getName());
                     productPrice.setText(String.format("%.2f", drink.getPrice()));
 
@@ -142,7 +143,7 @@ public class ViewProductFragment extends Fragment {
             case "Menu":
                 MenuData menu = menuController.getMenu(id);
                 if (menu != null) {
-                    productImage.setImageResource(R.drawable.hambur_2);
+                    ImageLoader.loadImage(productImage, menu.getImg_url());
                     productName.setText("Menu [" + menu.getId() + "]");
                     productPrice.setText(String.format("%.2f", menu.getPrice()));
                     productHamburgerName.setText(menu.getHamburger().getName());
