@@ -56,6 +56,7 @@ public class DiscountCreationDialog extends Dialog {
         cancelButton = findViewById(R.id.cancelButton);
 
         if (existingDiscount != null) {
+            codeEditText.setText(String.valueOf(existingDiscount.getCode()));
             percentEditText.setText(String.valueOf(existingDiscount.getPercent()));
             activeSwitch.setChecked(existingDiscount.isActive());
         }

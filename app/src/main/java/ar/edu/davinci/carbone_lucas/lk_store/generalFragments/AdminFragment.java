@@ -30,7 +30,7 @@ public class AdminFragment extends Fragment {
     private SupportController supportController;
     private SupportAdminAdapter supportAdapter;
     private View view;
-
+    private Button addDiscountButton;
     public static AdminFragment newInstance() {
         return new AdminFragment();
     }
@@ -38,10 +38,10 @@ public class AdminFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_admin, container, false);
-
+        addDiscountButton = view.findViewById(R.id.addDiscountButton);
         recyclerView = view.findViewById(R.id.recyclerView);
         tabLayout = view.findViewById(R.id.tabLayout);
-
+        addDiscountButton.setVisibility(View.GONE);
         supportController = SupportController.getInstance();
 
         setupTabs();
@@ -61,12 +61,15 @@ public class AdminFragment extends Fragment {
                 switch (tab.getPosition()) {
                     case 0:
                         showSupports();
+                        addDiscountButton.setVisibility(View.GONE);
                         break;
                     case 1:
                         showUsers();
+                        addDiscountButton.setVisibility(View.GONE);
                         break;
                     case 2:
                         showDiscounts();
+                        addDiscountButton.setVisibility(View.VISIBLE);
                         break;
                 }
             }
@@ -138,7 +141,7 @@ public class AdminFragment extends Fragment {
                         }
                 );
 
-                Button addDiscountButton = view.findViewById(R.id.addDiscountButton);
+
                 addDiscountButton.setOnClickListener(v -> {
                     DiscountCreationDialog dialog = new DiscountCreationDialog(
                             getContext(),
