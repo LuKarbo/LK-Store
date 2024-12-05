@@ -3,9 +3,11 @@ package ar.edu.davinci.carbone_lucas.lk_store.Controllers;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 import java.util.List;
@@ -51,19 +53,46 @@ public class DiscountController {
     }
 
     public void getAllFireStoreDiscounts(OnDiscountsLoadedListener listener) {
-        if (discountList != null) {
-            listener.onDiscountsLoaded(discountList);
-        } else {
-            DiscountAPIGetAll task = new DiscountAPIGetAll();
-            try {
-                discountList = task.execute().get();
-                listener.onDiscountsLoaded(discountList);
-            } catch (Exception e) {
-                Log.e("DiscountController", "Error loading discount data: " + e.getMessage());
-                listener.onError(e);
-            }
-        }
+        db.collection(COLLECTION_NAME)
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+
+                    try {
+                        List<Discount> discountList = new ArrayList<>();
+
+                        for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Map<String, Object> discountData = documentSnapshot.getData();
+                            String documentId = documentSnapshot.getId();
+
+                            String code = (String) discountData.get("code");
+
+                            double porcent = 0.0;
+                            Object porcentObject = discountData.get("porcent");
+                            if (porcentObject instanceof Long) {
+                                porcent = ((Long) porcentObject).doubleValue();
+                            } else if (porcentObject instanceof Double) {
+                                porcent = (Double) porcentObject;
+                            }
+
+                            boolean isActive = (boolean) discountData.get("isActive");
+
+                            Discount discount = new Discount(documentId, code, porcent, isActive);
+                            discountList.add(discount);
+                        }
+                        listener.onDiscountsLoaded(discountList);
+                    } catch (Exception e) {
+                        Log.e("DiscountController", "Error al mapear los datos a Discount: " + e.getMessage());
+                        listener.onError(e);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("DiscountController", "Error al consultar: " + e.getMessage());
+                    listener.onError(e);
+                });
+
     }
+
+
 
     private boolean isDiscountInUse(String discountId) {
         MenuController menuController = MenuController.getInstance();
@@ -193,9 +222,14 @@ public class DiscountController {
                 });
     }
 
-    public void updateDiscountStatus(String discountId, Boolean isActive, DiscountController.OnDiscountOperationListener listener) {
-        Map<String, Object> updates = new HashMap<>();
+    public void updateDiscountStatus(String discountId, Boolean isActive, OnDiscountOperationListener listener) {
+        if (discountId == null) {
+            Log.e("DiscountController", "El ID del descuento es null.");
+            if (listener != null) listener.onFailure(new Exception("El ID del descuento no puede ser null"));
+            return;
+        }
 
+        Map<String, Object> updates = new HashMap<>();
         if (isActive != null) {
             updates.put("isActive", isActive);
         }
@@ -219,9 +253,11 @@ public class DiscountController {
                     if (listener != null) listener.onSuccess(null);
                 })
                 .addOnFailureListener(e -> {
+                    Log.e("DiscountController", "Error al actualizar el descuento: " + e.getMessage());
                     if (listener != null) listener.onFailure(e);
                 });
     }
+
 
     public interface OnDiscountOperationListener {
         void onSuccess(Discount discount);

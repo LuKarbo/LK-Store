@@ -3,13 +3,16 @@ package ar.edu.davinci.carbone_lucas.lk_store.models.Discount;
 public class Discount {
     private String id;
     private String code;
-    private double percent;
+    private double porcent;
     private boolean isActive;
 
-    public Discount(String id, String code, double percent, boolean isActive) {
+    public Discount() {
+    }
+
+    public Discount(String id, String code, double porcent, boolean isActive) {
         this.id = id;
         this.code = code;
-        this.percent = percent;
+        this.porcent = porcent;
         this.isActive = isActive;
     }
 
@@ -22,7 +25,7 @@ public class Discount {
     }
 
     public double getPercent() {
-        return percent;
+        return porcent;
     }
 
     public boolean isActive(){
