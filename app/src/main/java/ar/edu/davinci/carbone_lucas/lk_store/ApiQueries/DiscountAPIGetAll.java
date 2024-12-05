@@ -32,7 +32,7 @@ public class DiscountAPIGetAll extends AsyncTask<String, Integer, List<Discount>
                 JSONArray discount_respuesta = jsonResponse.getJSONArray("discounts");
                 for (int i = 0; i < discount_respuesta.length(); i++) {
                     JSONObject discount = discount_respuesta.getJSONObject(i);
-                    discounts.add(new Discount(discount.getString("id"),discount.getDouble("porcent"),discount.getBoolean("isActive")));
+                    discounts.add(new Discount(discount.getString("id"),discount.getString("code"),discount.getDouble("porcent"),discount.getBoolean("isActive")));
                     Log.e("DiscountAPIGetAll", "Added discount ID: " + discount.getString("id"));
                 }
             }

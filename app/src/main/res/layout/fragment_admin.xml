@@ -14,4 +14,11 @@
         android:layout_height="@dimen/_0dp"
         android:layout_weight="1" />
 
+    <Button
+        android:id="@+id/addDiscountButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Crear Descuento" />
+
 </LinearLayout>

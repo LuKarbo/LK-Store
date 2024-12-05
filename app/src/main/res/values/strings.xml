@@ -70,4 +70,11 @@
     <string name="responder">Responder</string>
     <string name="email">Email</string>
     <string name="cambiar_permisos">Cambiar Permisos</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
+    <string name="activo">Activo</string>
+    <string name="porcentaje_de_descuento">Porcentaje de descuento</string>
+    <string name="editar">Editar</string>
+    <string name="codigo">Codigo</string>
+    <string name="eliminar">Eliminar</string>
 </resources>
