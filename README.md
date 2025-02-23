@@ -64,7 +64,7 @@ La idea es interpretar una APP móvil de venta de comidas.
 ✅ Centralización de colores, dimensiones y textos en archivos `values`.
 
 ## 👨‍💻 Autor
-🔹 **Lucas Nahuel Carbone**
+🔹 **Lucas Karbo**
 
 **Lenguaje:** Java  
 **API:** LK-Store-API  
